@@ -1,22 +1,46 @@
-/* Import Roobert TRIAL font */
-@import url('https://fonts.googleapis.com/css2?family=Roobert:wght@300;400;600&display=swap');
-
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roobert+TRIAL:wght@300;400;500;600;700&display=swap');
 
 .intro-page {
   min-height: 100vh;
   background-color: #FFFFFF;
-  font-family: 'Roobert TRIAL', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roobert TRIAL', sans-serif;
   overflow: hidden;
 }
 
-/* Header Styles */
+/* Left Rectangle */
+.left-rectangle {
+  position: absolute;
+  width: 602px;
+  height: 602px;
+  top: 179px;
+  left: -301px;
+  border: 2px dashed #A0A4AB;
+  border-style: dashed;
+  border-width: 2px;
+  opacity: 1;
+  z-index: 1;
+  transform: rotate(45deg);
+}
+
+/* Right Rectangle */
+.right-rectangle {
+  position: absolute;
+  width: 602px;
+  height: 602px;
+  top: 179px;
+  right: -301px;
+  border: 2px dashed #A0A4AB;
+  border-style: dashed;
+  border-width: 2px;
+  opacity: 1;
+  z-index: 1;
+  transform: rotate(45deg);
+}
+
+/* Header */
 .intro-header {
   display: flex;
   justify-content: space-between;
@@ -69,7 +93,7 @@
   transform: translateY(-1px);
 }
 
-/* Main Content Styles */
+/* Main Content */
 .intro-main {
   display: flex;
   align-items: center;
@@ -79,53 +103,12 @@
   position: relative;
 }
 
-/* Left Interactive Element */
-.left-interactive {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.discover-ai-btn {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 12px 16px;
-  border-radius: 4px;
-}
-
-.discover-ai-btn:hover {
-  transform: translateX(-4px);
-}
-
-.discover-ai-btn .diamond-icon {
-  width: 16px;
-  height: 16px;
-  color: #1A1B1C;
-  transform: rotate(-90deg);
-}
-
-.discover-ai-btn span {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1A1B1C;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-/* Main Heading */
 .main-heading {
   flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.main-heading h1 {
   font-family: 'Roobert TRIAL', sans-serif;
   font-weight: 300;
   font-size: 128px;
@@ -134,108 +117,67 @@
   color: #1A1B1C;
   text-transform: none;
   white-space: pre-line;
+  margin: 0;
 }
 
-/* Right Interactive Element */
-.right-interactive {
+/* Button Containers */
+.left-button-container,
+.right-button-container {
   flex: 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-}
-
-.take-test-btn {
-  display: flex;
-  align-items: center;
-  gap: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 12px 16px;
-  border-radius: 4px;
+  transition: transform 0.3s ease;
+  z-index: 10;
 }
 
-.take-test-btn:hover {
-  transform: translateX(4px);
+.left-button-container {
+  justify-content: flex-start;
 }
 
-.take-test-btn span {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1A1B1C;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+.right-button-container {
+  justify-content: flex-end;
 }
 
-.take-test-btn .diamond-icon {
-  width: 16px;
-  height: 16px;
-  color: #1A1B1C;
-  transform: rotate(90deg);
+/* Button SVGs */
+.discover-button,
+.take-test-button {
+  width: auto;
+  height: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Footer Description */
+.discover-button:hover,
+.take-test-button:hover,
+.discover-button.hovered,
+.take-test-button.hovered {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+/* Footer */
 .intro-footer {
   position: absolute;
   bottom: 32px;
   left: 32px;
   max-width: 316px;
+  z-index: 10;
 }
 
-.description {
+.intro-footer p {
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0;
   color: #1A1B1C;
   text-transform: uppercase;
-}
-
-/* Decorative Lines */
-.decorative-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.line {
-  position: absolute;
-  background: repeating-linear-gradient(
-    to right,
-    #A0A4AB 0px,
-    #A0A4AB 2px,
-    transparent 2px,
-    transparent 8px
-  );
-  height: 1px;
-}
-
-.line-1 {
-  top: 40%;
-  left: 20%;
-  width: 30%;
-  transform: rotate(-45deg);
-}
-
-.line-2 {
-  bottom: 30%;
-  right: 20%;
-  width: 30%;
-  transform: rotate(45deg);
-}
-
-/* Hover Effects */
-.discover-ai-btn.hovered,
-.take-test-btn.hovered {
-  background-color: rgba(26, 27, 28, 0.05);
+  margin: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .main-heading h1 {
+  .main-heading {
     font-size: 96px;
     line-height: 90px;
   }
@@ -248,13 +190,13 @@
     padding: 120px 16px 80px;
   }
 
-  .main-heading h1 {
+  .main-heading {
     font-size: 64px;
     line-height: 60px;
   }
 
-  .left-interactive,
-  .right-interactive {
+  .left-button-container,
+  .right-button-container {
     flex: none;
   }
 
@@ -273,14 +215,8 @@
 }
 
 @media (max-width: 480px) {
-  .main-heading h1 {
+  .main-heading {
     font-size: 48px;
     line-height: 44px;
-  }
-
-  .discover-ai-btn,
-  .take-test-btn {
-    flex-direction: column;
-    gap: 8px;
   }
 }

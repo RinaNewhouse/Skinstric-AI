@@ -1,0 +1,254 @@
+/* Import Roobert TRIAL font */
+@import url('https://fonts.googleapis.com/css2?family=Roobert:wght@300;400;600&display=swap');
+
+.name-input-page {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  font-family: 'Roobert TRIAL', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.name-input-header {
+  padding: 32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1B1C;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.phase-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1A1B1C;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.header-subtitle {
+  margin-top: 4px;
+}
+
+.header-subtitle span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1B1C;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Main Content Styles */
+.name-input-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 32px 80px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.input-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1A1B1C;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.input-field {
+  position: relative;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 16px 20px;
+  font-family: 'Roobert TRIAL', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #1A1B1C;
+  background: transparent;
+  border: 2px solid #A0A4AB;
+  border-style: dashed;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.input-field input::placeholder {
+  color: #1A1B1C;
+  opacity: 0.4;
+}
+
+.input-field input.focused {
+  border-color: #1A1B1C;
+  border-style: solid;
+}
+
+/* Footer Navigation */
+.name-input-footer {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 12px 16px;
+}
+
+.back-btn:hover {
+  transform: translateX(-4px);
+}
+
+.back-icon {
+  width: 16px;
+  height: 16px;
+  color: #1A1B1C;
+}
+
+.back-btn span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1B1C;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.proceed-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 12px 16px;
+}
+
+.proceed-btn.enabled {
+  cursor: pointer;
+}
+
+.proceed-btn.enabled:hover {
+  transform: translateX(4px);
+}
+
+.proceed-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.proceed-icon {
+  width: 16px;
+  height: 16px;
+  color: #1A1B1C;
+}
+
+.proceed-btn span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1B1C;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Decorative Elements */
+.decorative-diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  border: 2px dashed #A0A4AB;
+  transform: translate(-50%, -50%) rotate(45deg);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .name-input-main {
+    padding: 100px 16px 80px;
+  }
+
+  .input-container {
+    gap: 30px;
+  }
+
+  .input-field input {
+    font-size: 20px;
+    padding: 14px 16px;
+  }
+
+  .name-input-footer {
+    left: 16px;
+    right: 16px;
+  }
+
+  .decorative-diamond {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field input {
+    font-size: 18px;
+    padding: 12px 14px;
+  }
+
+  .back-btn,
+  .proceed-btn {
+    padding: 8px 12px;
+    gap: 12px;
+  }
+
+  .decorative-diamond {
+    width: 250px;
+    height: 250px;
+  }
+}

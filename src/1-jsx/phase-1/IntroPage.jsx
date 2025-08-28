@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as DiscoverButton } from '../../assets/discover-ai-button.svg';
-import { ReactComponent as TakeTestButton } from '../../assets/take-test-button.svg';
+import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import { ReactComponent as ForwardButton } from '../../assets/forward-button-clean.svg';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import '../../2-css/phase-1/IntroPage.css';
@@ -17,13 +17,15 @@ const IntroPage = ({ onDiscoverClick, onTakeTestClick }) => {
         
         {/* Button Components */}
         <Button 
-          icon={DiscoverButton}
+          icon={BackButton}
+          text="DISCOVER A.I."
           position="left"
           onClick={onDiscoverClick}
         />
         
         <Button 
-          icon={TakeTestButton}
+          icon={ForwardButton}
+          text="TAKE TEST"
           position="right"
           onClick={onTakeTestClick}
         />

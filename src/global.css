@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roobert+TRIAL:wght@300;400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global font family */
+body {
+  font-family: 'Roobert TRIAL', sans-serif;
+}

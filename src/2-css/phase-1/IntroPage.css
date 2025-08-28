@@ -7,19 +7,16 @@
   display: flex;
   flex-direction: column;
   font-family: 'Roobert TRIAL', sans-serif;
-  overflow: hidden;
 }
 
 /* Left Rectangle */
 .left-rectangle {
   position: absolute;
-  width: 602px;
-  height: 602px;
-  top: 179px;
-  left: -301px;
+  width: 400px;
+  height: 400px;
+  top: 100px;
+  left: -200px;
   border: 2px dashed #A0A4AB;
-  border-style: dashed;
-  border-width: 2px;
   opacity: 1;
   z-index: 1;
   transform: rotate(45deg);
@@ -28,13 +25,11 @@
 /* Right Rectangle */
 .right-rectangle {
   position: absolute;
-  width: 602px;
-  height: 602px;
-  top: 179px;
-  right: -301px;
+  width: 400px;
+  height: 400px;
+  top: 100px;
+  right: -200px;
   border: 2px dashed #A0A4AB;
-  border-style: dashed;
-  border-width: 2px;
   opacity: 1;
   z-index: 1;
   transform: rotate(45deg);
@@ -50,7 +45,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 20;
 }
 
 .header-left {
@@ -96,19 +91,16 @@
 /* Main Content */
 .intro-main {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 100vh;
   padding: 0 32px;
   position: relative;
+  z-index: 20;
 }
 
 .main-heading {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   font-family: 'Roobert TRIAL', sans-serif;
   font-weight: 300;
   font-size: 128px;
@@ -117,27 +109,27 @@
   color: #1A1B1C;
   text-transform: none;
   white-space: pre-line;
-  margin: 0;
+  margin: 0 0 80px 0;
+  text-align: center;
 }
 
 /* Button Containers */
 .left-button-container,
 .right-button-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
   cursor: pointer;
   transition: transform 0.3s ease;
-  z-index: 10;
+  z-index: 20;
 }
 
 .left-button-container {
-  justify-content: flex-start;
+  left: 32px;
+  bottom: 200px;
 }
 
 .right-button-container {
-  justify-content: flex-end;
+  right: 32px;
+  bottom: 200px;
 }
 
 /* Button SVGs */
@@ -162,7 +154,7 @@
   bottom: 32px;
   left: 32px;
   max-width: 316px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .intro-footer p {
@@ -193,11 +185,16 @@
   .main-heading {
     font-size: 64px;
     line-height: 60px;
+    margin: 0 0 40px 0;
   }
 
   .left-button-container,
   .right-button-container {
-    flex: none;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 1rem 0;
   }
 
   .intro-footer {

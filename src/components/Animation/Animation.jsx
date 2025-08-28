@@ -6,12 +6,19 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
   const leftSideRef = useRef(null);
   const rightSideRef = useRef(null);
 
+  // Get responsive slide distance based on viewport width
+  const getSlideDistance = () => {
+    // Use viewport width units for truly responsive behavior
+    // 25vw = 25% of viewport width, which scales with screen size
+    return '25vw';
+  };
+
   // Animation functions
   const animateToRight = () => {
     console.log('Animating to right'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
-      x: '65%',
+      x: getSlideDistance(),
       textAlign: 'right',
       duration: 0.4,
       ease: 'power2.out'
@@ -29,7 +36,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     console.log('Animating to left'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
-      x: '-65%',
+      x: `-${getSlideDistance()}`,
       textAlign: 'left',
       duration: 0.4,
       ease: 'power2.out'

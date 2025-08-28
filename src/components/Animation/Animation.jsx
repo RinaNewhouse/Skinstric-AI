@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import './Animation.css';
 
 const Animation = ({ children, onHoverStart, onHoverEnd }) => {
   const mainHeadingRef = useRef(null);
@@ -83,7 +82,7 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
   });
 
   return (
-    <div className="animation-container">
+    <div className="main-content">
       {/* Main heading with ref */}
       <h1 ref={mainHeadingRef} className="main-heading">
         Sophisticated<br />skincare

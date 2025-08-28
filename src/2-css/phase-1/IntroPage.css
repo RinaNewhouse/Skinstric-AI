@@ -5,6 +5,43 @@
   position: relative;
 }
 
+/* Main content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  position: relative;
+}
+
+.main-heading {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 80%;
+  letter-spacing: -0.04em;
+  color: #1A1B1C;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+/* Side containers for buttons */
+.left-side,
+.right-side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.left-side {
+  left: 32px;
+}
+
+.right-side {
+  right: 32px;
+}
+
 /* Decorative triangles */
 .left-triangle, .right-triangle {
   position: absolute;

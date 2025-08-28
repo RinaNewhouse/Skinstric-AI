@@ -1,62 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactComponent as DiscoverButton } from '../../assets/discover-ai-button.svg';
 import { ReactComponent as TakeTestButton } from '../../assets/take-test-button.svg';
+import Header from '../../components/Header/Header';
+import Button from '../../components/Button/Button';
 import '../../2-css/phase-1/IntroPage.css';
 
 const IntroPage = ({ onDiscoverClick, onTakeTestClick }) => {
-  const [isDiscoverHovered, setIsDiscoverHovered] = useState(false);
-  const [isTakeTestHovered, setIsTakeTestHovered] = useState(false);
-
   return (
     <div className="intro-page">
-      {/* Left Rectangle */}
-      <div className="left-rectangle"></div>
-      
-      {/* Right Rectangle */}
-      <div className="right-rectangle"></div>
-
-      {/* Header */}
-      <header className="intro-header">
-        <div className="header-left">
-          <span className="brand-name">SKINSTRIC</span>
-          <span className="phase-label">[INTRO]</span>
-        </div>
-        <div className="header-right">
-          <button className="enter-code-btn">ENTER CODE</button>
-        </div>
-      </header>
+      {/* Header Component */}
+      <Header />
 
       {/* Main Content */}
-      <main className="intro-main">
-        <h2 className="main-heading">Sophisticated skincare</h2>
+      <div className="main-content">
+        <h1 className="main-heading">Sophisticated<br />skincare</h1>
         
-        {/* Left Button */}
-        <div 
-          className="left-button-container"
-          onMouseEnter={() => setIsDiscoverHovered(true)}
-          onMouseLeave={() => setIsDiscoverHovered(false)}
+        {/* Button Components */}
+        <Button 
+          icon={DiscoverButton}
+          position="left"
           onClick={onDiscoverClick}
-        >
-          <DiscoverButton 
-            className={`discover-button ${isDiscoverHovered ? 'hovered' : ''}`}
-          />
-        </div>
-
-        {/* Right Button */}
-        <div 
-          className="right-button-container"
-          onMouseEnter={() => setIsTakeTestHovered(true)}
-          onMouseLeave={() => setIsTakeTestHovered(false)}
+        />
+        
+        <Button 
+          icon={TakeTestButton}
+          position="right"
           onClick={onTakeTestClick}
-        >
-          <TakeTestButton 
-            className={`take-test-button ${isTakeTestHovered ? 'hovered' : ''}`}
-          />
-        </div>
-      </main>
+        />
+      </div>
+
+      {/* Decorative Triangles */}
+      <div className="left-triangle"></div>
+      <div className="right-triangle"></div>
 
       {/* Footer */}
-      <footer className="intro-footer">
+      <footer className="footer">
         <p>SKINSTRIC DEVELOPED AN A.I. THAT CREATES A HIGHLY-PERSONALISED ROUTINE TAILORED TO WHAT YOUR SKIN NEEDS.</p>
       </footer>
     </div>

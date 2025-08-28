@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roobert:wght@300;400;600&display=swap');
 
 .name-input-page {
-  min-height: 100vh;
   background-color: #FFFFFF;
   font-family: 'Roobert TRIAL', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   position: relative;
@@ -59,7 +58,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   padding: 120px 32px 80px;
 }
 

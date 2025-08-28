@@ -1,173 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Roobert+TRIAL:wght@300;400;500;600;700&display=swap');
 
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base page */
 .intro-page {
   min-height: 100vh;
-  background-color: #FFFFFF;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  background: white;
   font-family: 'Roobert TRIAL', sans-serif;
+  position: relative;
 }
 
-/* Left Rectangle */
-.left-rectangle {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  top: 100px;
-  left: -200px;
-  border: 2px dashed #A0A4AB;
-  opacity: 1;
-  z-index: 1;
-  transform: rotate(45deg);
-}
-
-/* Right Rectangle */
-.right-rectangle {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  top: 100px;
-  right: -200px;
-  border: 2px dashed #A0A4AB;
-  opacity: 1;
-  z-index: 1;
-  transform: rotate(45deg);
-}
-
-/* Header */
-.intro-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 32px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1A1B1C;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.phase-label {
-  font-size: 14px;
-  font-weight: 400;
-  color: #1A1B1C;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.enter-code-btn {
-  background-color: #1A1B1C;
-  color: #FFFFFF;
-  border: none;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.enter-code-btn:hover {
-  background-color: #2A2B2C;
-  transform: translateY(-1px);
-}
-
-/* Main Content */
-.intro-main {
+/* Main content */
+.main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 0 32px;
+  min-height: 60vh;
   position: relative;
-  z-index: 20;
 }
 
 .main-heading {
-  font-family: 'Roobert TRIAL', sans-serif;
-  font-weight: 300;
   font-size: 128px;
+  font-weight: 300;
   line-height: 120px;
-  letter-spacing: -0.07em;
   color: #1A1B1C;
-  text-transform: none;
-  white-space: pre-line;
-  margin: 0 0 80px 0;
   text-align: center;
+  margin-bottom: 80px;
 }
 
-/* Button Containers */
-.left-button-container,
-.right-button-container {
+/* Decorative triangles */
+.left-triangle, .right-triangle {
   position: absolute;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  z-index: 20;
+  top: 100px;
+  width: 400px;
+  height: 400px;
+  transform: rotate(45deg);
+  border: 1px dashed #A0A4AB;
+  opacity: 0.7;
+  z-index: 1;
+}
+.left-triangle {
+  left: -200px;
 }
 
-.left-button-container {
-  left: 32px;
-  bottom: 200px;
-}
-
-.right-button-container {
-  right: 32px;
-  bottom: 200px;
-}
-
-/* Button SVGs */
-.discover-button,
-.take-test-button {
-  width: auto;
-  height: auto;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.discover-button:hover,
-.take-test-button:hover,
-.discover-button.hovered,
-.take-test-button.hovered {
-  transform: scale(1.05);
-  opacity: 0.8;
+.right-triangle {
+  right: -200px;
 }
 
 /* Footer */
-.intro-footer {
+.footer {
   position: absolute;
   bottom: 32px;
   left: 32px;
   max-width: 316px;
-  z-index: 20;
 }
 
-.intro-footer p {
+.footer p {
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  letter-spacing: 0;
   color: #1A1B1C;
   text-transform: uppercase;
-  margin: 0;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1200px) {
   .main-heading {
     font-size: 96px;
@@ -176,38 +78,38 @@
 }
 
 @media (max-width: 768px) {
-  .intro-main {
-    flex-direction: column;
-    gap: 40px;
-    padding: 120px 16px 80px;
+  .nav {
+    padding: 16px;
   }
-
+  
   .main-heading {
     font-size: 64px;
     line-height: 60px;
-    margin: 0 0 40px 0;
+    margin-bottom: 40px;
   }
-
-  .left-button-container,
-  .right-button-container {
+  
+  .button-left,
+  .button-right {
     position: relative;
     left: auto;
     right: auto;
-    bottom: auto;
-    margin: 1rem 0;
+    top: auto;
+    transform: none;
+    margin: 1rem auto;
   }
-
-  .intro-footer {
+  
+  .footer {
     position: relative;
     bottom: auto;
     left: auto;
     max-width: 100%;
-    text-align: center;
-    margin-top: 40px;
-  }
-
-  .intro-header {
     padding: 16px;
+    text-align: center;
+  }
+  
+  .left-triangle,
+  .right-triangle {
+    display: none;
   }
 }
 

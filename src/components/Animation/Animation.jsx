@@ -12,6 +12,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     
     gsap.to(mainHeadingRef.current, {
       x: '65%',
+      textAlign: 'right',
       duration: 0.4,
       ease: 'power2.out'
     });
@@ -29,6 +30,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     
     gsap.to(mainHeadingRef.current, {
       x: '-65%',
+      textAlign: 'left',
       duration: 0.4,
       ease: 'power2.out'
     });
@@ -46,6 +48,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     
     gsap.to(mainHeadingRef.current, {
       x: 0,
+      textAlign: 'center',
       duration: 0.4,
       ease: 'power2.out'
     });

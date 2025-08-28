@@ -6,11 +6,17 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
   const leftSideRef = useRef(null);
   const rightSideRef = useRef(null);
 
-  // Get responsive slide distance based on viewport width
+  // Get responsive slide distance based on screen size
   const getSlideDistance = () => {
-    // Use viewport width units for truly responsive behavior
-    // 25vw = 25% of viewport width, which scales with screen size
-    return '25vw';
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth >= 1200) {
+      return '60%'; // Desktop - good slide distance
+    } else if (screenWidth >= 768) {
+      return '40%'; // Tablet - medium slide
+    } else {
+      return '20%'; // Mobile - safe slide, won't go off-screen
+    }
   };
 
   // Animation functions

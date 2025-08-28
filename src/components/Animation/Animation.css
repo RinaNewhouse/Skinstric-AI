@@ -1,0 +1,48 @@
+.animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  position: relative;
+  width: 100%;
+}
+
+.main-heading {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 80%;
+  letter-spacing: -0.04em;
+  color: #1A1B1C;
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Side containers for dissolve effects */
+.left-side,
+.right-side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.left-side {
+  left: 32px;
+}
+
+.right-side {
+  right: 32px;
+}
+
+/* Ensure buttons are visible and positioned correctly */
+.left-side .button-container,
+.right-side .button-container {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  transform: none;
+}

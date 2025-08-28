@@ -7,16 +7,24 @@ const Button = ({
   position = 'left', // 'left', 'right', or 'center'
   onClick,
   className = '',
-  hoverEffect = true
+  hoverEffect = true,
+  onHoverStart,
+  onHoverEnd
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    if (hoverEffect) setIsHovered(true);
+    if (hoverEffect) {
+      setIsHovered(true);
+      onHoverStart && onHoverStart(position);
+    }
   };
 
   const handleMouseLeave = () => {
-    if (hoverEffect) setIsHovered(false);
+    if (hoverEffect) {
+      setIsHovered(false);
+      onHoverEnd && onHoverEnd(position);
+    }
   };
 
   return (

@@ -5,25 +5,6 @@
   position: relative;
 }
 
-/* Main content */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  position: relative;
-}
-
-.main-heading {
-  font-size: 6rem;
-  font-weight: 300;
-  line-height: 80%;
-  letter-spacing: -0.04em;
-  color: #1A1B1C;
-  text-align: center;
-}
-
 /* Decorative triangles */
 .left-triangle, .right-triangle {
   position: absolute;

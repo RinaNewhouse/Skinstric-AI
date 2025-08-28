@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
-const Animation = ({ children, onHoverStart, onHoverEnd }) => {
+const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, onHoverEnd }) => {
   const mainHeadingRef = useRef(null);
   const leftSideRef = useRef(null);
   const rightSideRef = useRef(null);
@@ -16,7 +16,8 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
       ease: 'power2.out'
     });
     
-    gsap.to(rightSideRef.current, {
+    // Fade out RIGHT side (button + triangle)
+    gsap.to([rightSideRef.current, rightTriangleRef.current], {
       opacity: 0,
       duration: 0.4,
       ease: 'power2.out'
@@ -32,7 +33,8 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
       ease: 'power2.out'
     });
     
-    gsap.to(leftSideRef.current, {
+    // Fade out LEFT side (button + triangle)
+    gsap.to([leftSideRef.current, leftTriangleRef.current], {
       opacity: 0,
       duration: 0.4,
       ease: 'power2.out'
@@ -48,7 +50,8 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
       ease: 'power2.out'
     });
     
-    gsap.to([leftSideRef.current, rightSideRef.current], {
+    // Fade in both sides (buttons + triangles)
+    gsap.to([leftSideRef.current, rightSideRef.current, leftTriangleRef.current, rightTriangleRef.current], {
       opacity: 1,
       duration: 0.4,
       ease: 'power2.out'

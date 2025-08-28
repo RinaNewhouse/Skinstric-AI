@@ -12,14 +12,14 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
     console.log('Animating to right'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
-      x: '25%',
+      x: '65%',
       duration: 0.4,
       ease: 'power2.out'
     });
     
-    gsap.to(leftSideRef.current, {
+    gsap.to(rightSideRef.current, {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.4,
       ease: 'power2.out'
     });
   };
@@ -28,14 +28,14 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
     console.log('Animating to left'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
-      x: '-25%',
+      x: '-65%',
       duration: 0.4,
       ease: 'power2.out'
     });
     
-    gsap.to(rightSideRef.current, {
+    gsap.to(leftSideRef.current, {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.4,
       ease: 'power2.out'
     });
   };
@@ -51,7 +51,7 @@ const Animation = ({ children, onHoverStart, onHoverEnd }) => {
     
     gsap.to([leftSideRef.current, rightSideRef.current], {
       opacity: 1,
-      duration: 0.3,
+      duration: 0.4,
       ease: 'power2.out'
     });
   };

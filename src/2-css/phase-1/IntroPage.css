@@ -22,6 +22,8 @@
   letter-spacing: -0.04em;
   color: #1A1B1C;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 /* Side containers for buttons */
@@ -67,6 +69,7 @@
   bottom: 32px;
   left: 32px;
   max-width: 316px;
+  z-index: 10;
 }
 
 .footer p {

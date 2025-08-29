@@ -19,8 +19,16 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     }
   };
 
+  // Check if device is mobile
+  const isMobile = () => {
+    return window.innerWidth <= 768;
+  };
+
   // Animation functions
   const animateToRight = () => {
+    // Don't animate on mobile
+    if (isMobile()) return;
+    
     console.log('Animating to right'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
@@ -39,6 +47,9 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
   };
 
   const animateToLeft = () => {
+    // Don't animate on mobile
+    if (isMobile()) return;
+    
     console.log('Animating to left'); // Debug log
     
     gsap.to(mainHeadingRef.current, {
@@ -57,6 +68,9 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
   };
 
   const resetAnimation = () => {
+    // Don't animate on mobile
+    if (isMobile()) return;
+    
     console.log('Resetting animation'); // Debug log
     
     gsap.to(mainHeadingRef.current, {

@@ -22,7 +22,6 @@
   letter-spacing: -0.04em;
   color: #1A1B1C;
   text-align: center;
-  margin-bottom: 80px;
 }
 
 /* Side containers for buttons */
@@ -78,6 +77,18 @@
   text-transform: uppercase;
 }
 
+/* Mobile elements - hidden by default */
+.mobile-diamond {
+  display: none;
+}
+
+/* Hide center-positioned button on desktop */
+@media (min-width: 769px) {
+  .button-center {
+    display: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .main-heading {
@@ -87,30 +98,76 @@
 }
 
 @media (max-width: 768px) {
-  .main-heading {
-    font-size: 64px;
-    line-height: 60px;
-    margin-bottom: 40px;
+  /* Mobile layout changes */
+  .main-content {
+    min-height: 60vh;
+    padding-top: 60px;
+    justify-content: flex-start;
   }
   
+  .main-heading {
+    font-size: 48px;
+    line-height: 44px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Hide desktop triangles on mobile */
+  .left-triangle,
+  .right-triangle {
+    display: none;
+  }
+  
+  /* Hide side button containers on mobile */
+  .left-side,
+  .right-side {
+    display: none;
+  }
+  
+  /* Mobile concentric diamond frames */
+  .mobile-diamond {
+    display: block;
+    position: absolute;
+    border: 2px dashed #A0A4AB;
+    opacity: 0.5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .mobile-diamond-outer {
+    width: 80vw;
+    height: 80vw;
+    z-index: 1;
+  }
+  
+  .mobile-diamond-inner {
+    width: 60vw;
+    height: 60vw;
+    z-index: 2;
+  }
+  
+  /* Footer adjustments for mobile */
   .footer {
     position: relative;
     bottom: auto;
     left: auto;
     max-width: 100%;
-    padding: 16px;
+    padding: 20px 16px;
     text-align: center;
-  }
-  
-  .left-triangle,
-  .right-triangle {
-    display: none;
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .main-heading {
-    font-size: 48px;
-    line-height: 44px;
+    font-size: 40px;
+    line-height: 38px;
+  }
+  
+  .main-content {
+    min-height: 50vh;
+    padding-top: 40px;
   }
 }

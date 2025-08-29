@@ -39,6 +39,18 @@ const IntroPage = ({ onDiscoverClick, onTakeTestClick }) => {
       <div ref={leftTriangleRef} className="left-triangle"></div>
       <div ref={rightTriangleRef} className="right-triangle"></div>
 
+      {/* Mobile Diamond Frames */}
+      <div className="mobile-diamond mobile-diamond-outer"></div>
+      <div className="mobile-diamond mobile-diamond-inner"></div>
+
+      {/* Mobile TAKE TEST Button - reuse Button component */}
+      <Button 
+        icon={ForwardButton}
+        text="TAKE TEST"
+        position="center"
+        onClick={onTakeTestClick}
+      />
+
       {/* Footer */}
       <footer className="footer">
         <p>SKINSTRIC DEVELOPED AN A.I. THAT CREATES A HIGHLY-PERSONALISED ROUTINE TAILORED TO WHAT YOUR SKIN NEEDS.</p>

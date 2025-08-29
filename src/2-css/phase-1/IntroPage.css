@@ -103,9 +103,7 @@
 @media (max-width: 768px) {
   /* Mobile layout changes */
   .main-content {
-    min-height: 60vh;
-    padding-top: 60px;
-    justify-content: flex-start;
+    justify-content: center;
   }
   
   .main-heading {
@@ -131,9 +129,9 @@
   /* Mobile concentric diamond frames */
   .mobile-diamond {
     display: block;
-    position: absolute;
     border: 2px dashed #A0A4AB;
     opacity: 0.5;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
@@ -149,6 +147,19 @@
     width: 60vw;
     height: 60vw;
     z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  /* Position mobile button absolutely to match diamonds */
+  .button-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
   }
   
   /* Footer adjustments for mobile */

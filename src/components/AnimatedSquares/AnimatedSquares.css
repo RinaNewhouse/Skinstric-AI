@@ -1,0 +1,89 @@
+.animated-squares {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.square {
+  position: absolute;
+  border: 2px dashed #A0A4AB;
+  opacity: 0.3;
+  transform: rotate(45deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+.square-1 {
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.square-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+.square-3 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+.square-4 {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-20px);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .square-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 5%;
+  }
+  
+  .square-2 {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 10%;
+  }
+  
+  .square-3 {
+    width: 60px;
+    height: 60px;
+    top: 25%;
+    right: 15%;
+  }
+  
+  .square-4 {
+    width: 70px;
+    height: 70px;
+    bottom: 15%;
+    left: 10%;
+  }
+}

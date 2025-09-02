@@ -28,11 +28,13 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
           >
             <div className="option-icon">
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2"/>
-                <circle cx="24" cy="24" r="12" stroke="currentColor" strokeWidth="2"/>
-                <circle cx="24" cy="24" r="6" fill="currentColor"/>
+                {/* Camera aperture - hexagon with six blades */}
+                <path d="M24 4L28 8L32 12L32 20L28 24L24 28L20 24L16 20L16 12L20 8L24 4Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                <circle cx="24" cy="16" r="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                <circle cx="24" cy="16" r="2" fill="currentColor"/>
               </svg>
             </div>
+            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. TO SCAN YOUR FACE</span>
             </div>
@@ -47,11 +49,13 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
           >
             <div className="option-icon">
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <path d="M12 16L20 24L12 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M36 16L28 24L36 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M24 12L24 36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                {/* Landscape with sun/moon */}
+                <circle cx="24" cy="12" r="6" fill="currentColor"/>
+                <path d="M8 32C8 28 12 24 16 24C20 24 24 28 24 32C24 36 20 40 16 40C12 40 8 36 8 32Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                <path d="M24 32C24 28 28 24 32 24C36 24 40 28 40 32C40 36 36 40 32 40C28 40 24 36 24 32Z" stroke="currentColor" strokeWidth="2" fill="none"/>
               </svg>
             </div>
+            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. ACCESS GALLERY</span>
             </div>

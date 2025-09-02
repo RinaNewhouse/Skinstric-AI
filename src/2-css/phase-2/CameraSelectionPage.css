@@ -29,40 +29,52 @@
 .options-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 60px;
   align-items: center;
   max-width: 600px;
   width: 100%;
 }
 
 .option-frame {
-  width: 300px;
-  height: 200px;
-  border: 2px dashed #A0A4AB;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   background: white;
 }
 
-.option-frame:hover,
-.option-frame.hovered {
-  border-color: #1A1B1C;
-  transform: translateY(-2px);
+.option-icon {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #A0A4AB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  background: white;
 }
 
-.option-icon {
-  margin-bottom: 20px;
-  color: #1A1B1C;
+.option-frame:hover .option-icon,
+.option-frame.hovered .option-icon {
+  border-color: #1A1B1C;
+  transform: scale(1.05);
 }
 
 .option-icon svg {
   width: 48px;
   height: 48px;
+  color: #1A1B1C;
+}
+
+.connecting-line {
+  width: 2px;
+  height: 30px;
+  background: #1A1B1C;
+  margin-bottom: 15px;
 }
 
 .option-text {
@@ -90,12 +102,7 @@
   .options-container {
     flex-direction: row;
     justify-content: center;
-    gap: 60px;
-  }
-  
-  .option-frame {
-    width: 280px;
-    height: 180px;
+    gap: 80px;
   }
   
   .analysis-header {
@@ -115,12 +122,12 @@
   }
   
   .options-container {
-    gap: 30px;
+    gap: 50px;
   }
   
-  .option-frame {
-    width: 280px;
-    height: 160px;
+  .option-icon {
+    width: 100px;
+    height: 100px;
   }
   
   .option-icon svg {

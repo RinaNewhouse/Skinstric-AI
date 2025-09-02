@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import IntroPage from './IntroPage';
 import EnterNamePage from './EnterNamePage';
 import EnterCityPage from './EnterCityPage';
-import CameraSelectionPage from './CameraSelectionPage';
+import CameraSelectionPage from '../phase-2/CameraSelectionPage';
 import ProcessingPage from './ProcessingPage';
 
 const Phase1Router = () => {

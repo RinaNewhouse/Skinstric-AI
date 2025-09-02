@@ -1,0 +1,164 @@
+.camera-capture-page {
+  min-height: 100vh;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.camera-header {
+  font-size: 14px;
+  color: #A0A4AB;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.camera-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #f5f5f5;
+}
+
+.capture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.capture-frame {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #A0A4AB;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.capture-instructions {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.capture-instructions p {
+  font-size: 14px;
+  color: #A0A4AB;
+  margin: 0;
+}
+
+.navigation-buttons {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 3;
+}
+
+.capture-button {
+  background: #1A1B1C;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.capture-button:hover:not(:disabled) {
+  background: #2A2B2C;
+  transform: translateY(-1px);
+}
+
+.capture-button:disabled {
+  background: #A0A4AB;
+  cursor: not-allowed;
+}
+
+.error-message {
+  text-align: center;
+  max-width: 400px;
+  padding: 40px 20px;
+}
+
+.error-message h2 {
+  font-size: 24px;
+  color: #1A1B1C;
+  margin-bottom: 20px;
+}
+
+.error-message p {
+  font-size: 14px;
+  color: #A0A4AB;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0 16px;
+  }
+  
+  .camera-header {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .camera-container {
+    max-width: 100%;
+    aspect-ratio: 3/4;
+  }
+  
+  .capture-frame {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .capture-instructions p {
+    font-size: 12px;
+  }
+  
+  .navigation-buttons {
+    bottom: 20px;
+    padding: 0 20px;
+  }
+  
+  .capture-button {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}

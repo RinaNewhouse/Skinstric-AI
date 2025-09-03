@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import { MdFileUpload } from "react-icons/md";
 import '../../2-css/phase-2/GalleryUpload.css';
 
 const GalleryUpload = ({ onBack, onImageSelected }) => {
@@ -37,11 +38,7 @@ const GalleryUpload = ({ onBack, onImageSelected }) => {
         <div className="upload-container">
           <div className="upload-area" onClick={handleUploadClick}>
             <div className="upload-icon">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <path d="M24 8L32 16L24 24L16 16L24 8Z" stroke="currentColor" strokeWidth="2" fill="none"/>
-                <path d="M8 32L20 20L28 28L40 16" stroke="currentColor" strokeWidth="2" fill="none"/>
-                <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2" fill="none"/>
-              </svg>
+              <MdFileUpload size={48} />
             </div>
             <div className="upload-text">
               <span>CLICK TO SELECT IMAGE</span>

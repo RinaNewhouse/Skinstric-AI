@@ -12,11 +12,30 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [permissionStatus, setPermissionStatus] = useState(null);
   const [isCheckingPermission, setIsCheckingPermission] = useState(true);
+  const [isStartingCamera, setIsStartingCamera] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {
     checkCameraPermission();
+  }, []);
+
+  // Add permission change listener
+  useEffect(() => {
+    if (navigator.permissions && navigator.permissions.query) {
+      navigator.permissions.query({ name: 'camera' }).then(permission => {
+        // Set up change listener
+        permission.onchange = () => {
+          console.log('Permission changed to:', permission.state);
+          setPermissionStatus(permission.state);
+          
+          // If permission is now granted, start camera
+          if (permission.state === 'granted') {
+            startCamera();
+          }
+        };
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -57,7 +76,10 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   };
 
   const startCamera = async () => {
+    if (isStartingCamera) return; // Prevent multiple starts
+    
     try {
+      setIsStartingCamera(true);
       setIsLoading(true);
       setError(null);
       
@@ -76,12 +98,11 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       setStream(mediaStream);
       
       setIsLoading(false);
-      
-      // Re-check permission after camera starts
-      await checkCameraPermission();
+      setIsStartingCamera(false);
     } catch (err) {
       console.error('Camera error:', err);
       setIsLoading(false);
+      setIsStartingCamera(false);
       
       if (err.name === 'NotAllowedError') {
         setError('Camera access denied. Please allow camera permissions and try again.');

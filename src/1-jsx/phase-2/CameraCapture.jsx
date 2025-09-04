@@ -38,6 +38,19 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     }
   }, []);
 
+  // Cleanup effect to stop camera when component unmounts
+  useEffect(() => {
+    return () => {
+      console.log('Component unmounting, stopping camera stream...');
+      if (stream) {
+        stream.getTracks().forEach(track => {
+          console.log('Stopping track on unmount:', track);
+          track.stop();
+        });
+      }
+    };
+  }, [stream]);
+
   useEffect(() => {
     if (stream && videoRef.current) {
       console.log('Setting video srcObject...');

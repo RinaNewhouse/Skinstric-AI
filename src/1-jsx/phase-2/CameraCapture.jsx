@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
@@ -10,8 +10,34 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [error, setError] = useState(null);
   const [isCapturing, setIsCapturing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [permissionStatus, setPermissionStatus] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+
+  useEffect(() => {
+    checkCameraPermission();
+  }, []);
+
+  const checkCameraPermission = async () => {
+    try {
+      // Check if permissions API is supported
+      if (navigator.permissions && navigator.permissions.query) {
+        const permission = await navigator.permissions.query({ name: 'camera' });
+        setPermissionStatus(permission.state);
+        
+        // If permission is already granted, start camera immediately
+        if (permission.state === 'granted') {
+          startCamera();
+        }
+      } else {
+        // Fallback for browsers that don't support permissions API
+        setPermissionStatus('prompt');
+      }
+    } catch (err) {
+      console.error('Permission check error:', err);
+      setPermissionStatus('prompt');
+    }
+  };
 
   const startCamera = async () => {
     try {
@@ -37,6 +63,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       
       if (err.name === 'NotAllowedError') {
         setError('Camera access denied. Please allow camera permissions and try again.');
+        setPermissionStatus('denied');
       } else if (err.name === 'NotFoundError') {
         setError('No camera found. Please check if your camera is connected.');
       } else {
@@ -141,7 +168,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
-        {!stream ? (
+        {!stream && permissionStatus !== 'granted' ? (
           <div className="camera-setup">
             <div className="setup-instructions">
               <h3>Camera Setup</h3>

@@ -19,6 +19,14 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     checkCameraPermission();
   }, []);
 
+  useEffect(() => {
+    if (stream && videoRef.current) {
+      console.log('Setting video srcObject...');
+      videoRef.current.srcObject = stream;
+      console.log('Video srcObject set');
+    }
+  }, [stream, videoRef.current]);
+
   const checkCameraPermission = async () => {
     try {
       console.log('Starting permission check...');
@@ -66,20 +74,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       console.log('Stream tracks:', mediaStream.getTracks());
       
       setStream(mediaStream);
-      
-      // Wait for video element to be ready before setting stream
-      const waitForVideo = () => {
-        if (videoRef.current) {
-          console.log('Setting video srcObject...');
-          videoRef.current.srcObject = mediaStream;
-          console.log('Video srcObject set');
-        } else {
-          console.log('Video ref not ready, retrying...');
-          setTimeout(waitForVideo, 100);
-        }
-      };
-      
-      waitForVideo();
       
       setIsLoading(false);
     } catch (err) {

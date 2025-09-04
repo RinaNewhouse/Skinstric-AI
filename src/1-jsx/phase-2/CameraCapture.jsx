@@ -63,7 +63,21 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
         videoRef.current.srcObject = mediaStream;
         console.log('Video srcObject set');
       } else {
-        console.log('Video ref not ready');
+        console.log('Video ref not ready, retrying...');
+        // Try multiple times with increasing delays for production environments
+        const attempts = [50, 100, 200, 500];
+        
+        attempts.forEach((delay, index) => {
+          setTimeout(() => {
+            if (videoRef.current) {
+              console.log(`Setting video srcObject (attempt ${index + 1})...`);
+              videoRef.current.srcObject = mediaStream;
+              console.log('Video srcObject set (retry)');
+            } else if (index === attempts.length - 1) {
+              console.error('Video ref never became ready after all attempts');
+            }
+          }, delay);
+        });
       }
       
       setIsLoading(false);
@@ -111,9 +125,15 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   };
 
   const handleBack = () => {
+    console.log('Stopping camera stream...');
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach(track => {
+        console.log('Stopping track:', track);
+        track.stop();
+      });
+      setStream(null); // Reset stream state
     }
+    console.log('Camera stream stopped');
     onBack();
   };
 

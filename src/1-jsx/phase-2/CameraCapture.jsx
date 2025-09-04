@@ -21,10 +21,13 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
 
   const checkCameraPermission = async () => {
     try {
+      console.log('Starting permission check...');
       setIsCheckingPermission(true);
       // Check if permissions API is supported
       if (navigator.permissions && navigator.permissions.query) {
+        console.log('Permissions API supported, querying...');
         const permission = await navigator.permissions.query({ name: 'camera' });
+        console.log('Permission result:', permission.state);
         setPermissionStatus(permission.state);
         
         // If permission is already granted, start camera immediately
@@ -32,9 +35,11 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           startCamera();
         }
       } else {
+        console.log('Permissions API not supported, using fallback');
         // Fallback for browsers that don't support permissions API
         setPermissionStatus('prompt');
       }
+      console.log('Setting isCheckingPermission to false');
       setIsCheckingPermission(false);
     } catch (err) {
       console.error('Permission check error:', err);

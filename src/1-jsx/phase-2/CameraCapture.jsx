@@ -76,6 +76,9 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       setStream(mediaStream);
       
       setIsLoading(false);
+      
+      // Re-check permission after camera starts
+      await checkCameraPermission();
     } catch (err) {
       console.error('Camera error:', err);
       setIsLoading(false);

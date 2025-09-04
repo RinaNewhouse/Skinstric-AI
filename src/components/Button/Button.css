@@ -15,12 +15,8 @@
 }
 
 .button-center {
-  position: relative;
-  left: auto;
-  right: auto;
-  top: auto;
-  transform: none;
-  margin: 1rem auto;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .button {

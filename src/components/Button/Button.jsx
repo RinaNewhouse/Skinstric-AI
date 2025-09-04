@@ -7,6 +7,7 @@ const Button = ({
   position = 'left', // 'left', 'right', or 'center'
   onClick,
   className = '',
+  style = {},
   hoverEffect = true,
   onHoverStart,
   onHoverEnd
@@ -31,6 +32,7 @@ const Button = ({
     <div className={`button-container button-${position} ${className}`}>
       <div 
         className={`button ${isHovered ? 'hovered' : ''}`}
+        style={style}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={onClick}

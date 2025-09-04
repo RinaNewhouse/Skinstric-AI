@@ -11,6 +11,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [permissionStatus, setPermissionStatus] = useState(null);
+  const [isCheckingPermission, setIsCheckingPermission] = useState(true);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -20,6 +21,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
 
   const checkCameraPermission = async () => {
     try {
+      setIsCheckingPermission(true);
       // Check if permissions API is supported
       if (navigator.permissions && navigator.permissions.query) {
         const permission = await navigator.permissions.query({ name: 'camera' });
@@ -33,9 +35,11 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
         // Fallback for browsers that don't support permissions API
         setPermissionStatus('prompt');
       }
+      setIsCheckingPermission(false);
     } catch (err) {
       console.error('Permission check error:', err);
       setPermissionStatus('prompt');
+      setIsCheckingPermission(false);
     }
   };
 
@@ -137,6 +141,29 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     onBack();
   };
 
+  if (isCheckingPermission) {
+    return (
+      <div className="camera-capture-page">
+        <Header />
+        <AnimatedSquares />
+        <div className="content-wrapper">
+          <div className="loading-message">
+            <h2>Checking camera permissions...</h2>
+            <p>Please wait while we check your camera settings</p>
+          </div>
+        </div>
+        <div className="navigation-buttons">
+          <Button 
+            icon={BackButton}
+            text="BACK"
+            position="left"
+            onClick={handleBack}
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className="camera-capture-page">
@@ -198,8 +225,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
-        {console.log('DEBUG - permissionStatus:', permissionStatus)}
-        {console.log('DEBUG - should show setup:', permissionStatus === null || permissionStatus === 'prompt')}
         {permissionStatus === null || permissionStatus === 'prompt' ? (
           <div className="camera-setup">
             <div className="setup-instructions">

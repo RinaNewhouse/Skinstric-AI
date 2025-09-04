@@ -44,6 +44,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       setIsLoading(true);
       setError(null);
       
+      console.log('Starting camera...');
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
         video: { 
           width: { ideal: 1280 },
@@ -52,10 +53,19 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
         } 
       });
       
+      console.log('Camera stream obtained:', mediaStream);
+      console.log('Stream tracks:', mediaStream.getTracks());
+      
       setStream(mediaStream);
+      
       if (videoRef.current) {
+        console.log('Setting video srcObject...');
         videoRef.current.srcObject = mediaStream;
+        console.log('Video srcObject set');
+      } else {
+        console.log('Video ref not ready');
       }
+      
       setIsLoading(false);
     } catch (err) {
       console.error('Camera error:', err);
@@ -189,6 +199,10 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
                 playsInline
                 muted
                 className="camera-feed"
+                onLoadedMetadata={() => console.log('Video metadata loaded')}
+                onCanPlay={() => console.log('Video can play')}
+                onPlay={() => console.log('Video started playing')}
+                onError={(e) => console.error('Video error:', e)}
               />
               <canvas ref={canvasRef} style={{ display: 'none' }} />
               

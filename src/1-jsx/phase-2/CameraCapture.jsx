@@ -216,6 +216,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
+        {console.log('Current permissionStatus:', permissionStatus)}
         {permissionStatus === 'prompt' ? (
           <div className="camera-setup">
             <div className="setup-instructions">

@@ -239,6 +239,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
                 text="ENABLE CAMERA"
                 position="center"
                 onClick={startCamera}
+                style={{ backgroundColor: 'red', color: 'white', padding: '20px', border: '2px solid yellow', fontSize: '16px', fontWeight: 'bold' }}
               />
             </div>
           </div>

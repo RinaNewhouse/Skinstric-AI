@@ -237,7 +237,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
               <p>Click the button below to enable your camera</p>
               <Button 
                 text="ENABLE CAMERA"
-                position="center"
+                position="left"
                 onClick={() => console.log('Button clicked!')}
                 style={{ backgroundColor: 'red', color: 'white', padding: '20px', border: '2px solid yellow', fontSize: '16px', fontWeight: 'bold' }}
               />

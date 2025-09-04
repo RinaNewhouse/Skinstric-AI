@@ -199,6 +199,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
         </div>
         
         {console.log('DEBUG - permissionStatus:', permissionStatus)}
+        {console.log('DEBUG - should show setup:', permissionStatus === null || permissionStatus === 'prompt')}
         {permissionStatus === null || permissionStatus === 'prompt' ? (
           <div className="camera-setup">
             <div className="setup-instructions">

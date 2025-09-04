@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '../../components/Header/Header';
 import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
@@ -9,20 +9,15 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [stream, setStream] = useState(null);
   const [error, setError] = useState(null);
   const [isCapturing, setIsCapturing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    startCamera();
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
-  }, []);
-
   const startCamera = async () => {
     try {
+      setIsLoading(true);
+      setError(null);
+      
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
         video: { 
           width: { ideal: 1280 },
@@ -30,12 +25,23 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           facingMode: 'user'
         } 
       });
+      
       setStream(mediaStream);
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
       }
+      setIsLoading(false);
     } catch (err) {
-      setError('Camera access denied. Please allow camera permissions.');
+      console.error('Camera error:', err);
+      setIsLoading(false);
+      
+      if (err.name === 'NotAllowedError') {
+        setError('Camera access denied. Please allow camera permissions and try again.');
+      } else if (err.name === 'NotFoundError') {
+        setError('No camera found. Please check if your camera is connected.');
+      } else {
+        setError(`Camera error: ${err.message}`);
+      }
     }
   };
 
@@ -83,7 +89,34 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <div className="error-message">
             <h2>Camera Access Required</h2>
             <p>{error}</p>
-            <p>Please refresh the page and allow camera permissions.</p>
+            <Button 
+              text="TRY AGAIN"
+              position="center"
+              onClick={startCamera}
+            />
+          </div>
+        </div>
+        <div className="navigation-buttons">
+          <Button 
+            icon={BackButton}
+            text="BACK"
+            position="left"
+            onClick={handleBack}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="camera-capture-page">
+        <Header />
+        <AnimatedSquares />
+        <div className="content-wrapper">
+          <div className="loading-message">
+            <h2>Setting up camera...</h2>
+            <p>Please allow camera permissions when prompted</p>
           </div>
         </div>
         <div className="navigation-buttons">
@@ -108,24 +141,40 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
-        <div className="camera-container">
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            muted
-            className="camera-feed"
-          />
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
-          
-          <div className="capture-overlay">
-            <div className="capture-frame"></div>
+        {!stream ? (
+          <div className="camera-setup">
+            <div className="setup-instructions">
+              <h3>Camera Setup</h3>
+              <p>Click the button below to enable your camera</p>
+              <Button 
+                text="ENABLE CAMERA"
+                position="center"
+                onClick={startCamera}
+              />
+            </div>
           </div>
-        </div>
-        
-        <div className="capture-instructions">
-          <p>Position your face in the frame and click capture</p>
-        </div>
+        ) : (
+          <>
+            <div className="camera-container">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="camera-feed"
+              />
+              <canvas ref={canvasRef} style={{ display: 'none' }} />
+              
+              <div className="capture-overlay">
+                <div className="capture-frame"></div>
+              </div>
+            </div>
+            
+            <div className="capture-instructions">
+              <p>Position your face in the frame and click capture</p>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="navigation-buttons">
@@ -135,13 +184,14 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           position="left"
           onClick={handleBack}
         />
-        <button 
-          className="capture-button"
-          onClick={captureImage}
-          disabled={isCapturing || !stream}
-        >
-          {isCapturing ? 'CAPTURING...' : 'CAPTURE'}
-        </button>
+        {stream && (
+          <Button 
+            text={isCapturing ? 'CAPTURING...' : 'CAPTURE'}
+            position="right"
+            onClick={captureImage}
+            disabled={isCapturing}
+          />
+        )}
       </div>
     </div>
   );

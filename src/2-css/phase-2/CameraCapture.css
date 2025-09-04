@@ -85,28 +85,7 @@
   z-index: 3;
 }
 
-.capture-button {
-  background: #1A1B1C;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-}
 
-.capture-button:hover:not(:disabled) {
-  background: #2A2B2C;
-  transform: translateY(-1px);
-}
-
-.capture-button:disabled {
-  background: #A0A4AB;
-  cursor: not-allowed;
-}
 
 .error-message {
   text-align: center;
@@ -126,6 +105,50 @@
   line-height: 1.5;
   margin-bottom: 10px;
 }
+
+.camera-setup {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.setup-instructions h3 {
+  font-size: 24px;
+  color: #1A1B1C;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.setup-instructions p {
+  font-size: 14px;
+  color: #A0A4AB;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+
+
+.loading-message {
+  text-align: center;
+  max-width: 400px;
+  padding: 40px 20px;
+}
+
+.loading-message h2 {
+  font-size: 24px;
+  color: #1A1B1C;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.loading-message p {
+  font-size: 14px;
+  color: #A0A4AB;
+  line-height: 1.5;
+}
+
+
 
 /* Mobile styles */
 @media (max-width: 768px) {
@@ -157,8 +180,5 @@
     padding: 0 20px;
   }
   
-  .capture-button {
-    padding: 10px 20px;
-    font-size: 12px;
-  }
+
 }

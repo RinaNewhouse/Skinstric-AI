@@ -264,7 +264,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
                 position="center"
                 onClick={startCamera}
                 className="enable-camera-button"
-                style={{ padding: '20px', fontSize: '16px', fontWeight: 'bold' }}
+                // style={{ padding: '20px', fontSize: '16px', fontWeight: 'bold' }}
               />
             </div>
           </div>

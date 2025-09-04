@@ -67,27 +67,19 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
       
       setStream(mediaStream);
       
-      if (videoRef.current) {
-        console.log('Setting video srcObject...');
-        videoRef.current.srcObject = mediaStream;
-        console.log('Video srcObject set');
-      } else {
-        console.log('Video ref not ready, retrying...');
-        // Try multiple times with increasing delays for production environments
-        const attempts = [50, 100, 200, 500];
-        
-        attempts.forEach((delay, index) => {
-          setTimeout(() => {
-            if (videoRef.current) {
-              console.log(`Setting video srcObject (attempt ${index + 1})...`);
-              videoRef.current.srcObject = mediaStream;
-              console.log('Video srcObject set (retry)');
-            } else if (index === attempts.length - 1) {
-              console.error('Video ref never became ready after all attempts');
-            }
-          }, delay);
-        });
-      }
+      // Wait for video element to be ready before setting stream
+      const waitForVideo = () => {
+        if (videoRef.current) {
+          console.log('Setting video srcObject...');
+          videoRef.current.srcObject = mediaStream;
+          console.log('Video srcObject set');
+        } else {
+          console.log('Video ref not ready, retrying...');
+          setTimeout(waitForVideo, 100);
+        }
+      };
+      
+      waitForVideo();
       
       setIsLoading(false);
     } catch (err) {
@@ -230,7 +222,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
-        {permissionStatus === null || permissionStatus === 'prompt' ? (
+        {permissionStatus === 'prompt' ? (
           <div className="camera-setup">
             <div className="setup-instructions">
               <h3>Camera Setup</h3>

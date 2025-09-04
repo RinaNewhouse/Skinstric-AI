@@ -41,13 +41,30 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   // Cleanup effect to stop camera when component unmounts
   useEffect(() => {
     return () => {
-      console.log('Component unmounting, stopping camera stream...');
+      console.log('Component unmounting, aggressive cleanup...');
+      
+      // Clear video element
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
+      }
+      
+      // Stop all tracks
       if (stream) {
         stream.getTracks().forEach(track => {
-          console.log('Stopping track on unmount:', track);
           track.stop();
+          track.enabled = false;
         });
       }
+      
+      // Force stop any remaining streams
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(activeStream => {
+          activeStream.getTracks().forEach(track => {
+            track.stop();
+            track.enabled = false;
+          });
+        })
+        .catch(() => {});
     };
   }, [stream]);
 
@@ -157,16 +174,44 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   };
 
   const handleBack = () => {
-    console.log('Stopping camera stream...');
+    console.log('Stopping camera stream aggressively...');
+    
+    // 1. Clear video element immediately
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+      videoRef.current.load(); // Force reload
+    }
+    
+    // 2. Stop all tracks aggressively
     if (stream) {
       stream.getTracks().forEach(track => {
-        console.log('Stopping track:', track);
+        console.log('Stopping track aggressively:', track);
         track.stop();
+        track.enabled = false; // Force disable
       });
-      setStream(null); // Reset stream state
     }
-    console.log('Camera stream stopped');
-    onBack();
+    
+    // 3. Force stop any active media streams globally
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(activeStream => {
+        activeStream.getTracks().forEach(track => {
+          track.stop();
+          track.enabled = false;
+        });
+      })
+      .catch(() => {}); // Ignore errors
+    
+    // 4. Reset all state
+    setStream(null);
+    setIsLoading(false);
+    setIsCapturing(false);
+    setError(null);
+    
+    // 5. Small delay to ensure cleanup
+    setTimeout(() => {
+      console.log('Camera stream cleanup completed');
+      onBack();
+    }, 100);
   };
 
   if (isCheckingPermission) {
@@ -264,7 +309,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
                 position="center"
                 onClick={startCamera}
                 className="enable-camera-button"
-                // style={{ padding: '20px', fontSize: '16px', fontWeight: 'bold' }}
               />
             </div>
           </div>

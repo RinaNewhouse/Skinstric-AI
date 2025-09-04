@@ -198,7 +198,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
           <span>TAKE A SELFIE</span>
         </div>
         
-        {!stream && permissionStatus !== 'granted' ? (
+        {permissionStatus === 'prompt' ? (
           <div className="camera-setup">
             <div className="setup-instructions">
               <h3>Camera Setup</h3>

@@ -9,7 +9,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedAge, setSelectedAge] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
-  const [pieChartPercentage, setPieChartPercentage] = useState(0);
+  const [currentPercentage, setCurrentPercentage] = useState(0);
 
   useEffect(() => {
     if (demographicData) {
@@ -26,26 +26,10 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
       setSelectedAge(topAge);
       setSelectedGender(topGender);
       
-      // Animate pie chart to highest percentage
-      animatePieChart(Math.max(topRace[1], topAge[1], topGender[1]));
+      // Set final percentage immediately (no counting animation)
+      setCurrentPercentage(Math.max(topRace[1], topAge[1], topGender[1]));
     }
   }, [demographicData]);
-
-  const animatePieChart = (targetPercentage) => {
-    const duration = 1500; // 1.5 seconds
-    const steps = 60;
-    const increment = targetPercentage / steps;
-    let current = 0;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= targetPercentage) {
-        current = targetPercentage;
-        clearInterval(timer);
-      }
-      setPieChartPercentage(current);
-    }, duration / steps);
-  };
 
   const formatPercentage = (value) => {
     return Math.floor(value * 100).toFixed(2);
@@ -57,17 +41,17 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
 
   const handleRaceSelect = (raceEntry) => {
     setSelectedRace(raceEntry);
-    animatePieChart(raceEntry[1]);
+    setCurrentPercentage(raceEntry[1]);
   };
 
   const handleAgeSelect = (ageEntry) => {
     setSelectedAge(ageEntry);
-    animatePieChart(ageEntry[1]);
+    setCurrentPercentage(ageEntry[1]);
   };
 
   const handleGenderSelect = (genderEntry) => {
     setSelectedGender(genderEntry);
-    animatePieChart(genderEntry[1]);
+    setCurrentPercentage(genderEntry[1]);
   };
 
   const handleReset = () => {
@@ -84,7 +68,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
       setSelectedAge(topAge);
       setSelectedGender(topGender);
       
-      animatePieChart(Math.max(topRace[1], topAge[1], topGender[1]));
+      setCurrentPercentage(Math.max(topRace[1], topAge[1], topGender[1]));
     }
   };
 
@@ -165,7 +149,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
               <div className="pie-chart-container">
                 <div className="pie-chart">
                   <div className="pie-chart-text">
-                    {formatPercentage(pieChartPercentage)}%
+                    {formatPercentage(currentPercentage)}%
                   </div>
                 </div>
               </div>

@@ -23,8 +23,9 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
       console.log('Uploading image for demographic analysis...');
       
       // Extract pure base64 string from data URL
-      const pureBase64 = base64Image.includes(',') ? base64Image.split(',')[1] : base64Image;
+      const pureBase64 = base64Image.split(',')[1];
       console.log('Base64 length:', pureBase64.length);
+      console.log('First 50 chars:', pureBase64.substring(0, 50));
       
       const response = await fetch('https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo', {
         method: 'POST',

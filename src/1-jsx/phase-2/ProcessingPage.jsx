@@ -33,7 +33,7 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          "Image": pureBase64
+          "Image": "base64_encoded_string"
         })
       });
 

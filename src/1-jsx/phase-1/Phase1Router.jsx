@@ -50,6 +50,8 @@ const Phase1Router = () => {
   };
 
   const handlePhase2Complete = (demographicData) => {
+    console.log('Phase1Router received demographicData from Phase2Router:', demographicData);
+    console.log('Updating userData.demographics to:', demographicData);
     updateUserData('demographics', demographicData);
     setCurrentPhase('phase3');
   };

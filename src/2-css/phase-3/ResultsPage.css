@@ -1,0 +1,165 @@
+.results-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.analysis-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.analysis-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1A1B1C;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+}
+
+.analysis-description {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.diamond-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.diamond-diagram {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  transform: rotate(45deg);
+}
+
+.diamond-section {
+  background: #e9ecef;
+  border: 2px dashed #adb5bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.diamond-section:hover {
+  background: #dee2e6;
+}
+
+.demographics-section {
+  background: #d1d3d4 !important;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+.demographics-section:hover,
+.demographics-section.hovered {
+  background: #c8c9ca !important;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cosmetic-concerns-section,
+.skin-type-section,
+.weather-section {
+  cursor: default;
+}
+
+.section-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+  transform: rotate(-45deg);
+  letter-spacing: 1px;
+  line-height: 1.2;
+  padding: 10px;
+}
+
+.demographics-section .section-label {
+  color: #343a40;
+  font-weight: 700;
+}
+
+.navigation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .analysis-title {
+    font-size: 36px;
+  }
+  
+  .analysis-description {
+    font-size: 16px;
+  }
+  
+  .diamond-diagram {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .section-label {
+    font-size: 14px;
+  }
+  
+  .content-wrapper {
+    padding: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analysis-title {
+    font-size: 28px;
+  }
+  
+  .diamond-diagram {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .section-label {
+    font-size: 12px;
+  }
+}

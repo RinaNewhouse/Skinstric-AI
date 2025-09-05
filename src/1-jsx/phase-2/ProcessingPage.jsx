@@ -43,6 +43,8 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
 
       const result = await response.json();
       console.log('Analysis complete:', result);
+      console.log('API response data:', result.data);
+      console.log('Calling onAnalysisComplete with data:', result.data);
       
       // Pass the demographic data to the parent component
       onAnalysisComplete(result.data);

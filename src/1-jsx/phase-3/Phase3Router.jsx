@@ -1,39 +1,66 @@
 import React, { useState } from 'react';
+import ResultsPage from './ResultsPage';
 import DemographicsPage from './DemographicsPage';
 
 const Phase3Router = ({ demographicData, onBack, onComplete }) => {
-  const [currentPage, setCurrentPage] = useState('demographics');
+  const [currentPage, setCurrentPage] = useState('results');
   const [confirmedDemographics, setConfirmedDemographics] = useState(null);
+
+  console.log('Phase3Router received demographicData:', demographicData);
+
+  const handleDemographicsClick = () => {
+    console.log('Demographics section clicked, navigating to demographics page');
+    console.log('Current demographicData:', demographicData);
+    setCurrentPage('demographics');
+  };
+
+  const handleResultsBack = () => {
+    console.log('Back from results page');
+    onBack();
+  };
+
+  const handleGetSummary = () => {
+    console.log('Get Summary clicked - completing phase');
+    onComplete(confirmedDemographics || demographicData);
+  };
 
   const handleDemographicsConfirm = (confirmedData) => {
     console.log('Demographics confirmed:', confirmedData);
     setConfirmedDemographics(confirmedData);
     
-    // For now, just complete the phase
-    // In the future, this could navigate to other analysis pages
-    onComplete(confirmedData);
+    // Navigate back to results page
+    setCurrentPage('results');
   };
 
-  const handleBack = () => {
-    onBack();
+  const handleDemographicsBack = () => {
+    console.log('Back from demographics page');
+    setCurrentPage('results');
   };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
+      case 'results':
+        return (
+          <ResultsPage
+            onDemographicsClick={handleDemographicsClick}
+            onBack={handleResultsBack}
+            onGetSummary={handleGetSummary}
+          />
+        );
       case 'demographics':
         return (
           <DemographicsPage
             demographicData={demographicData}
-            onBack={handleBack}
+            onBack={handleDemographicsBack}
             onConfirm={handleDemographicsConfirm}
           />
         );
       default:
         return (
-          <DemographicsPage
-            demographicData={demographicData}
-            onBack={handleBack}
-            onConfirm={handleDemographicsConfirm}
+          <ResultsPage
+            onDemographicsClick={handleDemographicsClick}
+            onBack={handleResultsBack}
+            onGetSummary={handleGetSummary}
           />
         );
     }

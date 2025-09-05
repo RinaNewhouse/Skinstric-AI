@@ -15,6 +15,8 @@ const Phase2Router = ({ onBack, onComplete }) => {
 
   const handleProcessingComplete = (data) => {
     console.log('Processing complete, moving to demographics...');
+    console.log('Phase2Router received data from ProcessingPage:', data);
+    console.log('Calling onComplete with data:', data);
     setDemographicData(data);
     // Move to Phase 3
     onComplete(data);

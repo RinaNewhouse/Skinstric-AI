@@ -3,12 +3,12 @@ import IntroPage from './IntroPage';
 import EnterNamePage from './EnterNamePage';
 import EnterCityPage from './EnterCityPage';
 import CameraSelectionPage from '../phase-2/CameraSelectionPage';
-import CameraCapture from '../phase-2/CameraCapture';
-import GalleryUpload from '../phase-2/GalleryUpload';
-import ProcessingPage from './ProcessingPage';
+import Phase2Router from '../phase-2/Phase2Router';
+import Phase3Router from '../phase-3/Phase3Router';
 
 const Phase1Router = () => {
   const [currentScreen, setCurrentScreen] = useState('intro');
+  const [currentPhase, setCurrentPhase] = useState('phase1');
   const [userData, setUserData] = useState({
     name: '',
     city: '',
@@ -42,38 +42,26 @@ const Phase1Router = () => {
   };
 
   const handleCameraSelect = () => {
-    navigateTo('camera-capture');
+    setCurrentPhase('phase2');
   };
 
   const handleGallerySelect = () => {
-    navigateTo('gallery-upload');
+    setCurrentPhase('phase2');
   };
 
-  const handleImageCaptured = async (base64Image) => {
-    updateUserData('image', base64Image);
-    
-    try {
-      // Call Phase 2 API
-      const response = await fetch('https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ Image: base64Image })
-      });
+  const handlePhase2Complete = (demographicData) => {
+    updateUserData('demographics', demographicData);
+    setCurrentPhase('phase3');
+  };
 
-      if (response.ok) {
-        const data = await response.json();
-        updateUserData('demographics', data.data);
-        navigateTo('demographics');
-      } else {
-        console.error('API call failed');
-        navigateTo('processing');
-      }
-    } catch (error) {
-      console.error('Error calling API:', error);
-      navigateTo('processing');
-    }
+  const handlePhase3Complete = (confirmedData) => {
+    console.log('All phases complete with data:', { ...userData, demographics: confirmedData });
+    // Here you could navigate to future phases or show completion
+  };
+
+  const handleBackToPhase1 = () => {
+    setCurrentPhase('phase1');
+    navigateTo('camera-selection');
   };
 
   const handleBack = () => {
@@ -101,10 +89,27 @@ const Phase1Router = () => {
     }
   };
 
-  const handleProcessingComplete = () => {
-    console.log('Processing complete with data:', userData);
-  };
+  // Handle phase transitions
+  if (currentPhase === 'phase2') {
+    return (
+      <Phase2Router 
+        onBack={handleBackToPhase1}
+        onComplete={handlePhase2Complete}
+      />
+    );
+  }
 
+  if (currentPhase === 'phase3') {
+    return (
+      <Phase3Router 
+        demographicData={userData.demographics}
+        onBack={() => setCurrentPhase('phase2')}
+        onComplete={handlePhase3Complete}
+      />
+    );
+  }
+
+  // Phase 1 screens
   switch (currentScreen) {
     case 'intro':
       return (
@@ -137,29 +142,6 @@ const Phase1Router = () => {
           onCameraSelect={handleCameraSelect}
           onGallerySelect={handleGallerySelect}
           onBack={handleBack}
-        />
-      );
-    
-    case 'camera-capture':
-      return (
-        <CameraCapture 
-          onBack={handleBack}
-          onImageCaptured={handleImageCaptured}
-        />
-      );
-    
-    case 'gallery-upload':
-      return (
-        <GalleryUpload 
-          onBack={handleBack}
-          onImageSelected={handleImageCaptured}
-        />
-      );
-    
-    case 'processing':
-      return (
-        <ProcessingPage 
-          onComplete={handleProcessingComplete}
         />
       );
     

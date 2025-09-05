@@ -1,0 +1,257 @@
+import React, { useState, useEffect } from 'react';
+import Header from '../../components/Header/Header';
+import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
+import Button from '../../components/Button/Button';
+import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import '../../2-css/phase-3/DemographicsPage.css';
+
+const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
+  const [selectedRace, setSelectedRace] = useState(null);
+  const [selectedAge, setSelectedAge] = useState(null);
+  const [selectedGender, setSelectedGender] = useState(null);
+  const [pieChartPercentage, setPieChartPercentage] = useState(0);
+
+  useEffect(() => {
+    if (demographicData) {
+      // Set initial selections to highest confidence values
+      const raceEntries = Object.entries(demographicData.race);
+      const ageEntries = Object.entries(demographicData.age);
+      const genderEntries = Object.entries(demographicData.gender);
+      
+      const topRace = raceEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      const topAge = ageEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      const topGender = genderEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      
+      setSelectedRace(topRace);
+      setSelectedAge(topAge);
+      setSelectedGender(topGender);
+      
+      // Animate pie chart to highest percentage
+      animatePieChart(Math.max(topRace[1], topAge[1], topGender[1]));
+    }
+  }, [demographicData]);
+
+  const animatePieChart = (targetPercentage) => {
+    const duration = 1500; // 1.5 seconds
+    const steps = 60;
+    const increment = targetPercentage / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetPercentage) {
+        current = targetPercentage;
+        clearInterval(timer);
+      }
+      setPieChartPercentage(current);
+    }, duration / steps);
+  };
+
+  const formatPercentage = (value) => {
+    return Math.floor(value * 100).toFixed(2);
+  };
+
+  const getSortedEntries = (data) => {
+    return Object.entries(data).sort((a, b) => b[1] - a[1]);
+  };
+
+  const handleRaceSelect = (raceEntry) => {
+    setSelectedRace(raceEntry);
+    animatePieChart(raceEntry[1]);
+  };
+
+  const handleAgeSelect = (ageEntry) => {
+    setSelectedAge(ageEntry);
+    animatePieChart(ageEntry[1]);
+  };
+
+  const handleGenderSelect = (genderEntry) => {
+    setSelectedGender(genderEntry);
+    animatePieChart(genderEntry[1]);
+  };
+
+  const handleReset = () => {
+    if (demographicData) {
+      const raceEntries = Object.entries(demographicData.race);
+      const ageEntries = Object.entries(demographicData.age);
+      const genderEntries = Object.entries(demographicData.gender);
+      
+      const topRace = raceEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      const topAge = ageEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      const topGender = genderEntries.reduce((a, b) => a[1] > b[1] ? a : b);
+      
+      setSelectedRace(topRace);
+      setSelectedAge(topAge);
+      setSelectedGender(topGender);
+      
+      animatePieChart(Math.max(topRace[1], topAge[1], topGender[1]));
+    }
+  };
+
+  const handleConfirm = () => {
+    const confirmedData = {
+      race: selectedRace,
+      age: selectedAge,
+      gender: selectedGender
+    };
+    onConfirm(confirmedData);
+  };
+
+  if (!demographicData) {
+    return (
+      <div className="demographics-page">
+        <Header />
+        <AnimatedSquares />
+        <div className="content-wrapper">
+          <div className="error-message">
+            <h2>No Data Available</h2>
+            <p>Please go back and try again.</p>
+          </div>
+        </div>
+        <div className="navigation-buttons">
+          <Button 
+            icon={BackButton}
+            text="BACK"
+            position="left"
+            onClick={onBack}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="demographics-page">
+      <Header />
+      <AnimatedSquares />
+      
+      <div className="content-wrapper">
+        <div className="demographics-container">
+          <div className="demographics-header">
+            <h1>SKINSTRIC [ANALYSIS]</h1>
+            <h2>A. I. ANALYSIS</h2>
+            <h3>DEMOGRAPHICS</h3>
+            <p>PREDICTED RACE & AGE</p>
+          </div>
+
+          <div className="demographics-content">
+            {/* Left Sidebar - Selected Attributes */}
+            <div className="left-sidebar">
+              <div className="selected-attributes">
+                <div className="attribute-block race-selected">
+                  <span className="attribute-value">{selectedRace ? selectedRace[0].toUpperCase() : ''}</span>
+                  <span className="attribute-label">RACE</span>
+                </div>
+                
+                <div className="attribute-block age-selected">
+                  <span className="attribute-value">{selectedAge ? selectedAge[0].toUpperCase() : ''}</span>
+                  <span className="attribute-label">AGE</span>
+                </div>
+                
+                <div className="attribute-block gender-selected">
+                  <span className="attribute-value">{selectedGender ? selectedGender[0].toUpperCase() : ''}</span>
+                  <span className="attribute-label">SEX</span>
+                </div>
+              </div>
+              
+              <div className="instruction-text">
+                <p>If A.I. estimate is wrong, select the correct one.</p>
+              </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="main-content">
+              {/* Pie Chart */}
+              <div className="pie-chart-container">
+                <div className="pie-chart">
+                  <div className="pie-chart-text">
+                    {formatPercentage(pieChartPercentage)}%
+                  </div>
+                </div>
+              </div>
+
+              {/* Demographics Lists */}
+              <div className="demographics-lists">
+                {/* Race List */}
+                <div className="demographic-section">
+                  <h4>RACE</h4>
+                  <div className="demographic-list">
+                    {getSortedEntries(demographicData.race).map(([race, confidence]) => (
+                      <div 
+                        key={race}
+                        className={`demographic-item ${selectedRace && selectedRace[0] === race ? 'selected' : ''}`}
+                        onClick={() => handleRaceSelect([race, confidence])}
+                      >
+                        <span className="demographic-label">{race.toUpperCase()}</span>
+                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Age List */}
+                <div className="demographic-section">
+                  <h4>AGE</h4>
+                  <div className="demographic-list">
+                    {getSortedEntries(demographicData.age).map(([age, confidence]) => (
+                      <div 
+                        key={age}
+                        className={`demographic-item ${selectedAge && selectedAge[0] === age ? 'selected' : ''}`}
+                        onClick={() => handleAgeSelect([age, confidence])}
+                      >
+                        <span className="demographic-label">{age.toUpperCase()}</span>
+                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Gender List */}
+                <div className="demographic-section">
+                  <h4>GENDER</h4>
+                  <div className="demographic-list">
+                    {getSortedEntries(demographicData.gender).map(([gender, confidence]) => (
+                      <div 
+                        key={gender}
+                        className={`demographic-item ${selectedGender && selectedGender[0] === gender ? 'selected' : ''}`}
+                        onClick={() => handleGenderSelect([gender, confidence])}
+                      >
+                        <span className="demographic-label">{gender.toUpperCase()}</span>
+                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="navigation-buttons">
+        <Button 
+          icon={BackButton}
+          text="BACK"
+          position="left"
+          onClick={onBack}
+        />
+        <div className="action-buttons">
+          <Button 
+            text="RESET"
+            position="left"
+            onClick={handleReset}
+            className="reset-button"
+          />
+          <Button 
+            text="CONFIRM"
+            position="right"
+            onClick={handleConfirm}
+            className="confirm-button"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DemographicsPage;

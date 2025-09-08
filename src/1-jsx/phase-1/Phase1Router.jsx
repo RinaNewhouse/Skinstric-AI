@@ -9,6 +9,7 @@ import Phase3Router from '../phase-3/Phase3Router';
 const Phase1Router = () => {
   const [currentScreen, setCurrentScreen] = useState('intro');
   const [currentPhase, setCurrentPhase] = useState('phase1');
+  const [phase2Mode, setPhase2Mode] = useState('camera'); // Track which mode Phase 2 should use
   const [userData, setUserData] = useState({
     name: '',
     city: '',
@@ -42,11 +43,16 @@ const Phase1Router = () => {
   };
 
   const handleCameraSelect = () => {
+    console.log('Camera selected, setting mode to camera');
+    setPhase2Mode('camera');
     setCurrentPhase('phase2');
   };
 
-  const handleGallerySelect = () => {
+  const handleGallerySelect = (base64Image) => {
+    console.log('Gallery image selected, going directly to processing');
+    updateUserData('image', base64Image);
     setCurrentPhase('phase2');
+    setPhase2Mode('processing'); // Skip camera/gallery, go straight to processing
   };
 
   const handlePhase2Complete = (demographicData) => {
@@ -95,6 +101,8 @@ const Phase1Router = () => {
   if (currentPhase === 'phase2') {
     return (
       <Phase2Router 
+        mode={phase2Mode}
+        imageData={userData.image}
         onBack={handleBackToPhase1}
         onComplete={handlePhase2Complete}
       />

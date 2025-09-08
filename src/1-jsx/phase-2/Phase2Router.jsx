@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import CameraCapture from './CameraCapture';
 import ProcessingPage from './ProcessingPage';
 
-const Phase2Router = ({ onBack, onComplete }) => {
-  const [currentPage, setCurrentPage] = useState('camera');
-  const [capturedImage, setCapturedImage] = useState(null);
+const Phase2Router = ({ mode = 'camera', imageData = null, onBack, onComplete }) => {
+  const [currentPage, setCurrentPage] = useState(mode);
+  const [capturedImage, setCapturedImage] = useState(imageData);
   const [demographicData, setDemographicData] = useState(null);
 
+  console.log('Phase2Router initialized with mode:', mode, 'imageData:', imageData ? 'present' : 'null');
+
   const handleImageCaptured = (base64Image) => {
-    console.log('Image captured, moving to processing...');
+    console.log('Image captured from camera, moving to processing...');
     setCapturedImage(base64Image);
     setCurrentPage('processing');
   };
@@ -24,7 +26,7 @@ const Phase2Router = ({ onBack, onComplete }) => {
 
   const handleBack = () => {
     if (currentPage === 'processing') {
-      setCurrentPage('camera');
+      setCurrentPage(mode); // Go back to camera or gallery
       setCapturedImage(null);
     } else {
       onBack();

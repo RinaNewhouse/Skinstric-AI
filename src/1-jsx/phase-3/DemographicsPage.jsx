@@ -26,8 +26,10 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
       setSelectedAge(topAge);
       setSelectedGender(topGender);
       
-      // Set final percentage immediately (no counting animation)
-      setCurrentPercentage(Math.max(topRace[1], topAge[1], topGender[1]));
+      // Animate to the initial percentage
+      setTimeout(() => {
+        animateToPercentage(Math.max(topRace[1], topAge[1], topGender[1]));
+      }, 100); // Small delay to ensure component is fully mounted
     }
   }, [demographicData]);
 

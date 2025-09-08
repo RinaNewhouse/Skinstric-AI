@@ -170,66 +170,36 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
 
             {/* Main Content Area */}
             <div className="main-content">
-              {/* Pie Chart */}
-              <div className="pie-chart-container">
-                <div className="pie-chart" style={{ '--percentage': `${currentPercentage * 360}deg` }}>
+              {/* Center Content */}
+              <div className="center-content">
+                <div className="selected-category-name">
+                  {selectedRace ? selectedRace[0].toUpperCase() : ''}
                 </div>
-                <div className="pie-chart-text">
-                  {formatPercentage(currentPercentage)}%
+                
+                {/* Pie Chart */}
+                <div className="pie-chart-container">
+                  <div className="pie-chart" style={{ '--percentage': `${currentPercentage * 360}deg` }}>
+                  </div>
+                  <div className="pie-chart-text">
+                    {formatPercentage(currentPercentage)}%
+                  </div>
                 </div>
               </div>
 
-              {/* Demographics Lists */}
-              <div className="demographics-lists">
-                {/* Race List */}
-                <div className="demographic-section">
-                  <h4>RACE</h4>
-                  <div className="demographic-list">
-                    {getSortedEntries(demographicData.race).map(([race, confidence]) => (
-                      <div 
-                        key={race}
-                        className={`demographic-item ${selectedRace && selectedRace[0] === race ? 'selected' : ''}`}
-                        onClick={() => handleRaceSelect([race, confidence])}
-                      >
-                        <span className="demographic-label">{race.toUpperCase()}</span>
-                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Age List */}
-                <div className="demographic-section">
-                  <h4>AGE</h4>
-                  <div className="demographic-list">
-                    {getSortedEntries(demographicData.age).map(([age, confidence]) => (
-                      <div 
-                        key={age}
-                        className={`demographic-item ${selectedAge && selectedAge[0] === age ? 'selected' : ''}`}
-                        onClick={() => handleAgeSelect([age, confidence])}
-                      >
-                        <span className="demographic-label">{age.toUpperCase()}</span>
-                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Gender List */}
-                <div className="demographic-section">
-                  <h4>GENDER</h4>
-                  <div className="demographic-list">
-                    {getSortedEntries(demographicData.gender).map(([gender, confidence]) => (
-                      <div 
-                        key={gender}
-                        className={`demographic-item ${selectedGender && selectedGender[0] === gender ? 'selected' : ''}`}
-                        onClick={() => handleGenderSelect([gender, confidence])}
-                      >
-                        <span className="demographic-label">{gender.toUpperCase()}</span>
-                        <span className="demographic-confidence">{formatPercentage(confidence)}%</span>
-                      </div>
-                    ))}
-                  </div>
+              {/* Right Panel - Race Table */}
+              <div className="race-table-panel">
+                <h3 className="table-title">RACE A.I. CONFIDENCE</h3>
+                <div className="race-table">
+                  {getSortedEntries(demographicData.race).map(([race, confidence]) => (
+                    <div 
+                      key={race}
+                      className={`race-table-row ${selectedRace && selectedRace[0] === race ? 'selected' : ''}`}
+                      onClick={() => handleRaceSelect([race, confidence])}
+                    >
+                      <span className="race-name">{race.toUpperCase()}</span>
+                      <span className="race-confidence">{formatPercentage(confidence)}%</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

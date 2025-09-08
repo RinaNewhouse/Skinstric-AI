@@ -135,9 +135,81 @@
 .main-content {
   flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  padding: 40px 20px;
+}
+
+/* Center Content */
+.center-content {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
+}
+
+.selected-category-name {
+  font-size: 64px;
+  font-weight: 700;
+  color: #1A1B1C;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+/* Race Table Panel */
+.race-table-panel {
+  width: 100%;
+  max-width: 350px;
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1B1C;
+  margin: 0 0 20px 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.race-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.race-table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.race-table-row:hover {
+  background: #f8f9fa;
+}
+
+.race-table-row.selected {
+  background: #1A1B1C;
+  color: white;
+}
+
+.race-name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.race-confidence {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* Pie Chart */
@@ -171,28 +243,11 @@
   z-index: 10;
 }
 
-/* Demographics Lists */
-.demographics-lists {
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.demographic-section h4 {
-  font-size: 14px;
-  color: #1A1B1C;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-  font-weight: 300;
-}
-
+/* Demographics Lists - Updated for single category */
 .demographic-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .demographic-item {
@@ -306,8 +361,22 @@
     font-size: 24px;
   }
   
-  .demographics-lists {
-    gap: 20px;
+  .main-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 15px;
+  }
+  
+  .selected-category-name {
+    font-size: 48px;
+  }
+  
+  .race-table-panel {
+    max-width: 100%;
+  }
+  
+  .race-table-row {
+    padding: 10px 12px;
   }
   
   .demographic-item {

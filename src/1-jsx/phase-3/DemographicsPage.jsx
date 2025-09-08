@@ -26,9 +26,9 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
       setSelectedAge(topAge);
       setSelectedGender(topGender);
       
-      // Animate to the initial percentage
+      // Animate to the initial percentage (use the selected race percentage)
       setTimeout(() => {
-        animateToPercentage(Math.max(topRace[1], topAge[1], topGender[1]));
+        animateToPercentage(topRace[1]);
       }, 100); // Small delay to ensure component is fully mounted
     }
   }, [demographicData]);

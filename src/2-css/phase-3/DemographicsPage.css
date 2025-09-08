@@ -154,7 +154,7 @@
   height: 200px;
   border-radius: 50%;
   background: white;
-  background-image: conic-gradient(from -90deg, #1A1B1C 0deg, #1A1B1C var(--percentage, 0deg), #A0A4AB var(--percentage, 0deg), #A0A4AB 360deg);
+  background-image: conic-gradient(from 0deg, #1A1B1C 0deg, #1A1B1C var(--percentage, 0deg), #A0A4AB var(--percentage, 0deg), #A0A4AB 360deg);
   mask: radial-gradient(circle, transparent 80px, black 80px);
   -webkit-mask: radial-gradient(circle, transparent 80px, black 80px);
 }

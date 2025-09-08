@@ -147,10 +147,10 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
             <div className="main-content">
               {/* Pie Chart */}
               <div className="pie-chart-container">
-                <div className="pie-chart">
-                  <div className="pie-chart-text">
-                    {formatPercentage(currentPercentage)}%
-                  </div>
+                <div className="pie-chart" style={{ '--percentage': `${currentPercentage * 360}deg` }}>
+                </div>
+                <div className="pie-chart-text">
+                  {formatPercentage(currentPercentage)}%
                 </div>
               </div>
 

@@ -39,19 +39,42 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
     return Object.entries(data).sort((a, b) => b[1] - a[1]);
   };
 
+  const animateToPercentage = (targetPercentage) => {
+    const startPercentage = currentPercentage;
+    const duration = 800; // 0.8 seconds
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease-out animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      
+      const newPercentage = startPercentage + (targetPercentage - startPercentage) * easeOut;
+      setCurrentPercentage(newPercentage);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
   const handleRaceSelect = (raceEntry) => {
     setSelectedRace(raceEntry);
-    setCurrentPercentage(raceEntry[1]);
+    animateToPercentage(raceEntry[1]);
   };
 
   const handleAgeSelect = (ageEntry) => {
     setSelectedAge(ageEntry);
-    setCurrentPercentage(ageEntry[1]);
+    animateToPercentage(ageEntry[1]);
   };
 
   const handleGenderSelect = (genderEntry) => {
     setSelectedGender(genderEntry);
-    setCurrentPercentage(genderEntry[1]);
+    animateToPercentage(genderEntry[1]);
   };
 
   const handleReset = () => {

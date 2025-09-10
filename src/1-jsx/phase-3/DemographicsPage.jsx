@@ -170,37 +170,34 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
 
             {/* Main Content Area */}
             <div className="main-content">
-              {/* Center Content */}
-              <div className="center-content">
-                <div className="selected-category-name">
-                  {selectedRace ? selectedRace[0].toUpperCase() : ''}
+              <div className="selected-category-name">
+                {selectedRace ? selectedRace[0].toUpperCase() : ''}
+              </div>
+              
+              {/* Pie Chart */}
+              <div className="pie-chart-container">
+                <div className="pie-chart" style={{ '--percentage': `${currentPercentage * 360}deg` }}>
                 </div>
-                
-                {/* Pie Chart */}
-                <div className="pie-chart-container">
-                  <div className="pie-chart" style={{ '--percentage': `${currentPercentage * 360}deg` }}>
-                  </div>
-                  <div className="pie-chart-text">
-                    {formatPercentage(currentPercentage)}%
-                  </div>
+                <div className="pie-chart-text">
+                  {formatPercentage(currentPercentage)}%
                 </div>
               </div>
+            </div>
 
-              {/* Right Panel - Race Table */}
-              <div className="race-table-panel">
-                <h3 className="table-title">RACE A.I. CONFIDENCE</h3>
-                <div className="race-table">
-                  {getSortedEntries(demographicData.race).map(([race, confidence]) => (
-                    <div 
-                      key={race}
-                      className={`race-table-row ${selectedRace && selectedRace[0] === race ? 'selected' : ''}`}
-                      onClick={() => handleRaceSelect([race, confidence])}
-                    >
-                      <span className="race-name">{race.toUpperCase()}</span>
-                      <span className="race-confidence">{formatPercentage(confidence)}%</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Right Sidebar - Race Table */}
+            <div className="right-sidebar">
+              <h3 className="table-title">RACE A.I. CONFIDENCE</h3>
+              <div className="race-table">
+                {getSortedEntries(demographicData.race).map(([race, confidence]) => (
+                  <div 
+                    key={race}
+                    className={`race-table-row ${selectedRace && selectedRace[0] === race ? 'selected' : ''}`}
+                    onClick={() => handleRaceSelect([race, confidence])}
+                  >
+                    <span className="race-name">{race.toUpperCase()}</span>
+                    <span className="race-confidence">{formatPercentage(confidence)}%</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

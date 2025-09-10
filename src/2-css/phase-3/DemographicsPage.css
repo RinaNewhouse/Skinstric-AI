@@ -94,6 +94,11 @@
   transition: all 0.3s ease;
 }
 
+.attribute-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .attribute-block.race-selected {
   background: #1A1B1C;
   color: white;
@@ -103,6 +108,12 @@
 .attribute-block.gender-selected {
   background: #F5F5F5;
   color: #1A1B1C;
+}
+
+.attribute-block.active {
+  background: #1A1B1C !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .attribute-value {

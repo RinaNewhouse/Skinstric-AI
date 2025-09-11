@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { ReactComponent as BackButtonBlack } from "../../assets/back-button-clean.svg";
-import RhombusBackground from "../../components/RhombusBackground/RhombusBackground";
+import { ReactComponent as RhombusesAroundDemographics } from "../../assets/rhombuses-around-demographics.svg";
 import "../../2-css/phase-3/ResultsPage.css";
 
 const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
@@ -45,8 +45,10 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
         <div className="main-content">
           <div className="diamond-container">
             {/* Rhombus Background */}
-            <RhombusBackground size="medium" opacity={0.8} />
-            
+            <div className="rhombus-background">
+              <RhombusesAroundDemographics />
+            </div>
+
             <div className="diamond-diagram">
               {/* Top section - DEMOGRAPHICS (clickable) */}
               <div

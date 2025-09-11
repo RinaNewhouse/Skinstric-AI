@@ -19,8 +19,8 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
   };
 
   const handleGetSummary = () => {
-    console.log('Get Summary button clicked');
-    onGetSummary();
+    console.log('Get Summary button clicked - navigating to demographics');
+    onDemographicsClick(); // Same as clicking demographics diamond
   };
 
   return (

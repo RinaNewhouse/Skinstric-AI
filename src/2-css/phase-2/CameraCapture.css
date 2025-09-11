@@ -106,6 +106,26 @@
   height: 60px;
 }
 
+/* Captured Photo Overlay */
+.captured-photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captured-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Navigation Overlay - Bottom */
 .navigation-overlay {
   position: absolute;

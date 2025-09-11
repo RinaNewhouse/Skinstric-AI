@@ -229,7 +229,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     // 5. Small delay to ensure cleanup
     setTimeout(() => {
       console.log('Camera stream cleanup completed');
-      onBack();
+    onBack();
     }, 100);
   };
 
@@ -309,25 +309,25 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
 
   return (
     <div className="camera-capture-page">
-      <div className="camera-container">
+            <div className="camera-container">
         {/* Camera Feed - Full Screen Background */}
         {stream && (
-          <video
-            ref={videoRef}
+              <video
+                ref={videoRef}
             className="camera-feed"
-            autoPlay
-            playsInline
-            muted
-            onLoadedMetadata={() => console.log('Video metadata loaded')}
-            onCanPlay={() => console.log('Video can play')}
-            onPlay={() => console.log('Video started playing')}
-            onError={(e) => console.error('Video error:', e)}
-          />
+                autoPlay
+                playsInline
+                muted
+                onLoadedMetadata={() => console.log('Video metadata loaded')}
+                onCanPlay={() => console.log('Video can play')}
+                onPlay={() => console.log('Video started playing')}
+                onError={(e) => console.error('Video error:', e)}
+              />
         )}
         
         {/* Hidden canvas for capture */}
-        <canvas ref={canvasRef} style={{ display: 'none' }} />
-        
+              <canvas ref={canvasRef} style={{ display: 'none' }} />
+              
         {/* Header - Top */}
         {stream && (
           <div className="header-overlay">
@@ -360,6 +360,15 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
         {/* After Photo State */}
         {photoTaken && (
           <>
+            {/* Captured Photo Display */}
+            <div className="captured-photo-overlay">
+              <img 
+                src={capturedImageData} 
+                alt="Captured photo" 
+                className="captured-photo"
+              />
+            </div>
+            
             {/* Great Shot Text - Above Photo */}
             <div className="great-shot-overlay">
               <GreatShotSVG />
@@ -407,14 +416,14 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
             <div className="nav-button" onClick={handleBack}>
               <BackButtonWhite />
             </div>
-          </div>
+      </div>
         )}
-        
+
         {permissionStatus === 'prompt' && (
           <div className="permission-overlay">
             <h3>Enable Camera</h3>
             <p>Click the button below to allow camera access and start taking your photo.</p>
-            <Button 
+        <Button 
               text="ENABLE CAMERA"
               position="center"
               onClick={startCamera}

@@ -58,21 +58,6 @@
   height: 572px;
 }
 
-.rhombus-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 572px;
-  height: 572px;
-  z-index: 1;
-  opacity: 0.8;
-}
-
-.rhombus-background svg {
-  width: 100%;
-  height: 100%;
-}
-
 .diamond-diagram {
   position: absolute;
   top: 50%;

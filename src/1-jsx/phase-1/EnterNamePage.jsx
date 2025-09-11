@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
-import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
+import RhombusBackground from '../../components/RhombusBackground/RhombusBackground';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
 import { ReactComponent as ForwardButton } from '../../assets/forward-button-clean.svg';
 import '../../2-css/phase-1/EnterNamePage.css';
@@ -36,9 +36,11 @@ const EnterNamePage = ({ onBack, onNext }) => {
   return (
     <div className="enter-name-page">
       <Header />
-      <AnimatedSquares />
       
       <div className="content-wrapper">
+        {/* Rhombus Background */}
+        <RhombusBackground size="medium" opacity={0.8} />
+        
         <div className="input-section">
           <div className="input-label">
             {isMobile ? 'TAP TO TYPE' : 'CLICK TO TYPE'}
@@ -48,7 +50,7 @@ const EnterNamePage = ({ onBack, onNext }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="your name"
+            placeholder="Introduce Yourself"
             className="name-input"
             autoFocus
           />

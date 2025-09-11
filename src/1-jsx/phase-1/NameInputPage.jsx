@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RhombusBackground from '../../components/RhombusBackground/RhombusBackground';
 import '../../2-css/phase-1/NameInputPage.css';
 
 const NameInputPage = ({ userData, onDataSubmit, onBack, onProceed }) => {
@@ -31,31 +32,37 @@ const NameInputPage = ({ userData, onDataSubmit, onBack, onProceed }) => {
       {/* Main Content */}
       <main className="name-input-main">
         <div className="input-container">
-          <div className="input-field-wrapper">
-            <div className="input-label">CLICK TO TYPE</div>
-            <div className="input-field">
-              <input
-                type="text"
-                placeholder="Introduce Yourself"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                onFocus={() => setCurrentField('name')}
-                className={currentField === 'name' ? 'focused' : ''}
-              />
+          {/* Rhombus Background */}
+          <RhombusBackground size="medium" opacity={0.8} />
+          
+          {/* Input Content */}
+          <div className="input-content">
+            <div className="input-field-wrapper">
+              <div className="input-label">CLICK TO TYPE</div>
+              <div className="input-field">
+                <input
+                  type="text"
+                  placeholder="Introduce Yourself"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  onFocus={() => setCurrentField('name')}
+                  className={currentField === 'name' ? 'focused' : ''}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="input-field-wrapper">
-            <div className="input-label">WHERE ARE YOU FROM?</div>
-            <div className="input-field">
-              <input
-                type="text"
-                placeholder="Enter your location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                onFocus={() => setCurrentField('location')}
-                className={currentField === 'location' ? 'focused' : ''}
-              />
+            <div className="input-field-wrapper">
+              <div className="input-label">WHERE ARE YOU FROM?</div>
+              <div className="input-field">
+                <input
+                  type="text"
+                  placeholder="Where are you from?"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  onFocus={() => setCurrentField('location')}
+                  className={currentField === 'location' ? 'focused' : ''}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -85,9 +92,6 @@ const NameInputPage = ({ userData, onDataSubmit, onBack, onProceed }) => {
           </div>
         </button>
       </footer>
-
-      {/* Decorative Elements */}
-      <div className="decorative-diamond"></div>
     </div>
   );
 };

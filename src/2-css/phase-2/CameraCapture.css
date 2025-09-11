@@ -1,80 +1,100 @@
+/* Full Screen Camera Capture Page */
 .camera-capture-page {
-  min-height: 100vh;
-  background: white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.content-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  padding: 0 20px;
-}
-
-.camera-header {
-  font-size: 14px;
-  color: #A0A4AB;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 40px;
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: #000;
 }
 
 .camera-container {
-  position: relative;
   width: 100%;
-  max-width: 500px;
-  aspect-ratio: 4/3;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 30px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .camera-feed {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #f5f5f5;
-}
-
-.capture-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  z-index: 1;
 }
 
-.capture-frame {
-  width: 200px;
-  height: 200px;
-  border: 2px dashed #A0A4AB;
-  border-radius: 50%;
-  opacity: 0.7;
-}
-
-.capture-instructions {
+/* Header Overlay - Top */
+.header-overlay {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.capture-instructions p {
-  font-size: 14px;
-  color: #A0A4AB;
-  margin: 0;
+.header-overlay svg {
+  width: 200px;
+  height: auto;
 }
 
-.navigation-buttons {
+/* Take Picture Button - Right Side */
+.take-pic-button {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.take-pic-button:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.take-pic-button svg {
+  width: 80px;
+  height: 80px;
+}
+
+/* Great Shot Overlay - Above Photo */
+.great-shot-overlay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  text-align: center;
+}
+
+.great-shot-overlay svg {
+  width: 200px;
+  height: auto;
+}
+
+/* Instructions Overlay - Bottom */
+.instructions-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  text-align: center;
+}
+
+.instructions-overlay svg {
+  width: 300px;
+  height: auto;
+}
+
+/* Navigation Overlay - Bottom */
+.navigation-overlay {
   position: absolute;
   bottom: 40px;
   left: 0;
@@ -82,112 +102,168 @@
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
-  z-index: 3;
+  z-index: 4;
 }
 
+.nav-button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
+.nav-button:hover {
+  transform: scale(1.05);
+}
 
-.error-message {
+.nav-button svg {
+  width: 60px;
+  height: 60px;
+}
+
+/* Error Overlay */
+.error-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
   text-align: center;
+  z-index: 5;
   max-width: 400px;
-  padding: 40px 20px;
 }
 
-.error-message h2 {
+.error-overlay h2 {
   font-size: 24px;
-  color: #1A1B1C;
-  margin-bottom: 20px;
-}
-
-.error-message p {
-  font-size: 14px;
-  color: #A0A4AB;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.camera-setup {
-  text-align: center;
-  max-width: 400px;
-  width: 100%;
-  padding: 40px 20px;
-}
-
-.setup-instructions h3 {
-  font-size: 24px;
-  color: #1A1B1C;
   margin-bottom: 20px;
   font-weight: 300;
 }
 
-.setup-instructions p {
+.error-overlay p {
   font-size: 14px;
-  color: #A0A4AB;
+  line-height: 1.5;
   margin-bottom: 30px;
-  line-height: 1.5;
 }
 
-/* Enable button specific styling for flex layout */
-.enable-camera-button {
-  position: relative;
-  left: auto;
-  right: auto;
-  top: auto;
-  transform: none;
-  margin: 0 auto;
-  display: block;
-}
-
-.loading-message {
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
   text-align: center;
+  z-index: 5;
   max-width: 400px;
-  padding: 40px 20px;
 }
 
-.loading-message h2 {
+.loading-overlay h2 {
   font-size: 24px;
-  color: #1A1B1C;
   margin-bottom: 20px;
   font-weight: 300;
 }
 
-.loading-message p {
+.loading-overlay p {
   font-size: 14px;
-  color: #A0A4AB;
   line-height: 1.5;
 }
 
+/* Permission Overlay */
+.permission-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 5;
+  max-width: 400px;
+}
 
+.permission-overlay h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
 
-/* Mobile styles */
+.permission-overlay p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .content-wrapper {
-    padding: 0 16px;
-  }
-  
-  .camera-header {
-    font-size: 12px;
-    margin-bottom: 30px;
-  }
-  
-  .camera-container {
-    max-width: 100%;
-    aspect-ratio: 3/4;
-  }
-  
-  .capture-frame {
+  .header-overlay svg {
     width: 150px;
-    height: 150px;
   }
   
-  .capture-instructions p {
-    font-size: 12px;
+  .take-pic-button {
+    right: 20px;
   }
   
-  .navigation-buttons {
+  .take-pic-button svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .great-shot-overlay svg {
+    width: 150px;
+  }
+  
+  .instructions-overlay {
+    bottom: 20px;
+  }
+  
+  .instructions-overlay svg {
+    width: 250px;
+  }
+  
+  .navigation-overlay {
     bottom: 20px;
     padding: 0 20px;
   }
   
+  .nav-button svg {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .error-overlay,
+  .loading-overlay,
+  .permission-overlay {
+    padding: 30px 20px;
+    margin: 0 20px;
+  }
+}
 
+@media (max-width: 480px) {
+  .header-overlay svg {
+    width: 120px;
+  }
+  
+  .take-pic-button svg {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .great-shot-overlay svg {
+    width: 120px;
+  }
+  
+  .instructions-overlay svg {
+    width: 200px;
+  }
+  
+  .nav-button svg {
+    width: 40px;
+    height: 40px;
+  }
 }

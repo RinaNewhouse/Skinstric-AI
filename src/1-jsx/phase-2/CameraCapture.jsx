@@ -3,6 +3,12 @@ import Header from '../../components/Header/Header';
 import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import { ReactComponent as BackButtonWhite } from '../../assets/back-button-white.svg';
+import { ReactComponent as ProceedButtonWhite } from '../../assets/proceed-button-white.svg';
+import { ReactComponent as TakePicSVG } from '../../assets/take-pic.svg';
+import { ReactComponent as CameraTextSVG } from '../../assets/camera-text-to-get-better-pic.svg';
+import { ReactComponent as GreatShotSVG } from '../../assets/great-shot.svg';
+import { ReactComponent as HeaderWhiteSVG } from '../../assets/header-white-when-camera-on.svg';
 import '../../2-css/phase-2/CameraCapture.css';
 
 const CameraCapture = ({ onBack, onImageCaptured }) => {
@@ -13,6 +19,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [permissionStatus, setPermissionStatus] = useState(null);
   const [isCheckingPermission, setIsCheckingPermission] = useState(true);
   const [isStartingCamera, setIsStartingCamera] = useState(false);
+  const [photoTaken, setPhotoTaken] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -164,6 +171,9 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     // Convert to base64
     const base64Image = canvas.toDataURL('image/jpeg', 0.8);
     
+    // Set photo taken state
+    setPhotoTaken(true);
+    
     // Stop camera stream
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
@@ -171,6 +181,12 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
 
     // Pass base64 image to parent
     onImageCaptured(base64Image);
+  };
+
+  const handleProceed = () => {
+    console.log('Proceeding with captured image...');
+    // The image is already captured and passed to parent
+    // This just handles the UI transition
   };
 
   const handleBack = () => {
@@ -290,70 +306,116 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
 
   return (
     <div className="camera-capture-page">
-      <Header />
-      <AnimatedSquares />
-      
-      <div className="content-wrapper">
-        <div className="camera-header">
-          <span>TAKE A SELFIE</span>
-        </div>
+      <div className="camera-container">
+        {/* Camera Feed - Full Screen Background */}
+        {stream && (
+          <video
+            ref={videoRef}
+            className="camera-feed"
+            autoPlay
+            playsInline
+            muted
+            onLoadedMetadata={() => console.log('Video metadata loaded')}
+            onCanPlay={() => console.log('Video can play')}
+            onPlay={() => console.log('Video started playing')}
+            onError={(e) => console.error('Video error:', e)}
+          />
+        )}
         
-        {console.log('Current permissionStatus:', permissionStatus)}
-        {permissionStatus === 'prompt' ? (
-          <div className="camera-setup">
-            <div className="setup-instructions">
-              <h3>Camera Setup</h3>
-              <p>Click the button below to enable your camera</p>
-              <Button 
-                text="ENABLE CAMERA"
-                position="center"
-                onClick={startCamera}
-                className="enable-camera-button"
-              />
-            </div>
+        {/* Hidden canvas for capture */}
+        <canvas ref={canvasRef} style={{ display: 'none' }} />
+        
+        {/* Header - Top */}
+        {stream && (
+          <div className="header-overlay">
+            <HeaderWhiteSVG />
           </div>
-        ) : (
+        )}
+        
+        {/* Before Photo State */}
+        {stream && !photoTaken && (
           <>
-            <div className="camera-container">
-              <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                muted
-                className="camera-feed"
-                onLoadedMetadata={() => console.log('Video metadata loaded')}
-                onCanPlay={() => console.log('Video can play')}
-                onPlay={() => console.log('Video started playing')}
-                onError={(e) => console.error('Video error:', e)}
-              />
-              <canvas ref={canvasRef} style={{ display: 'none' }} />
-              
-              <div className="capture-overlay">
-                <div className="capture-frame"></div>
-              </div>
+            {/* Take Picture Button - Right Side */}
+            <div className="take-pic-button" onClick={captureImage}>
+              <TakePicSVG />
             </div>
             
-            <div className="capture-instructions">
-              <p>Position your face in the frame and click capture</p>
+            {/* Instructions - Bottom */}
+            <div className="instructions-overlay">
+              <CameraTextSVG />
             </div>
           </>
         )}
-      </div>
-
-      <div className="navigation-buttons">
-        <Button 
-          icon={BackButton}
-          text="BACK"
-          position="left"
-          onClick={handleBack}
-        />
-        {stream && (
-          <Button 
-            text={isCapturing ? 'CAPTURING...' : 'CAPTURE'}
-            position="right"
-            onClick={captureImage}
-            disabled={isCapturing}
-          />
+        
+        {/* After Photo State */}
+        {photoTaken && (
+          <>
+            {/* Great Shot Text - Above Photo */}
+            <div className="great-shot-overlay">
+              <GreatShotSVG />
+            </div>
+            
+            {/* Instructions - Bottom */}
+            <div className="instructions-overlay">
+              <CameraTextSVG />
+            </div>
+            
+            {/* Navigation Buttons - Bottom */}
+            <div className="navigation-overlay">
+              <div className="nav-button" onClick={handleBack}>
+                <BackButtonWhite />
+              </div>
+              <div className="nav-button" onClick={handleProceed}>
+                <ProceedButtonWhite />
+              </div>
+            </div>
+          </>
+        )}
+        
+        {/* Error States */}
+        {error && (
+          <div className="error-overlay">
+            <h2>Camera Error</h2>
+            <p>{error}</p>
+            <div className="nav-button" onClick={handleBack}>
+              <BackButtonWhite />
+            </div>
+          </div>
+        )}
+        
+        {isLoading && (
+          <div className="loading-overlay">
+            <h2>Setting up camera...</h2>
+            <p>Please wait while we initialize your camera.</p>
+          </div>
+        )}
+        
+        {permissionStatus === 'denied' && (
+          <div className="permission-overlay">
+            <h3>Camera Access Required</h3>
+            <p>To take your photo, we need access to your camera. Please allow camera permissions in your browser settings and refresh the page.</p>
+            <div className="nav-button" onClick={handleBack}>
+              <BackButtonWhite />
+            </div>
+          </div>
+        )}
+        
+        {permissionStatus === 'prompt' && (
+          <div className="permission-overlay">
+            <h3>Enable Camera</h3>
+            <p>Click the button below to allow camera access and start taking your photo.</p>
+            <Button 
+              text="ENABLE CAMERA"
+              position="center"
+              onClick={startCamera}
+              disabled={isStartingCamera}
+              style={{
+                backgroundColor: '#dc3545',
+                border: '2px solid #ffc107',
+                color: 'white'
+              }}
+            />
+          </div>
         )}
       </div>
     </div>

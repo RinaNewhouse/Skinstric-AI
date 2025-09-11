@@ -1,39 +1,44 @@
-import React, { useState } from 'react';
-import Header from '../../components/Header/Header';
-import Button from '../../components/Button/Button';
-import { ReactComponent as BackButtonBlack } from '../../assets/back-button-clean.svg';
-import { ReactComponent as RhombusesAroundDemographics } from '../../assets/rhombuses-around-demographics.svg';
-import '../../2-css/phase-3/ResultsPage.css';
+import React, { useState } from "react";
+import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import { ReactComponent as BackButtonBlack } from "../../assets/back-button-clean.svg";
+import { ReactComponent as RhombusesAroundDemographics } from "../../assets/rhombuses-around-demographics.svg";
+import "../../2-css/phase-3/ResultsPage.css";
 
 const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
   const [demographicsHovered, setDemographicsHovered] = useState(false);
 
   const handleDemographicsClick = () => {
-    console.log('Demographics section clicked');
+    console.log("Demographics section clicked");
     onDemographicsClick();
   };
 
   const handleBack = () => {
-    console.log('Back button clicked');
+    console.log("Back button clicked");
     onBack();
   };
 
   const handleGetSummary = () => {
-    console.log('Get Summary button clicked - navigating to demographics');
+    console.log("Get Summary button clicked - navigating to demographics");
     onDemographicsClick(); // Same as clicking demographics diamond
   };
 
   return (
     <div className="results-page">
       <div className="content-wrapper">
-        <Header />
-        
+        <Header
+          brandName="SKINSTRIC"
+          phaseLabel="[ANALYSIS]"
+          buttonText="ENTER CODE"
+        />
+
         <div className="main-content">
           <div className="analysis-section">
             <h1 className="analysis-title">SKINSTRIC [ANALYSIS]</h1>
             <h2 className="analysis-subtitle">A.I. ANALYSIS</h2>
             <p className="analysis-description">
-              A.I. HAS ESTIMATED THE FOLLOWING. FIX ESTIMATED INFORMATION IF NEEDED.
+              A.I. HAS ESTIMATED THE FOLLOWING. FIX ESTIMATED INFORMATION IF
+              NEEDED.
             </p>
           </div>
 
@@ -42,11 +47,13 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
             <div className="rhombus-background">
               <RhombusesAroundDemographics />
             </div>
-            
+
             <div className="diamond-diagram">
               {/* Top section - DEMOGRAPHICS (clickable) */}
-              <div 
-                className={`diamond-section demographics-section ${demographicsHovered ? 'hovered' : ''}`}
+              <div
+                className={`diamond-section demographics-section ${
+                  demographicsHovered ? "hovered" : ""
+                }`}
                 onClick={handleDemographicsClick}
                 onMouseEnter={() => setDemographicsHovered(true)}
                 onMouseLeave={() => setDemographicsHovered(false)}
@@ -74,17 +81,17 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
 
         {/* Navigation - Bottom Left and Right */}
         <div className="navigation-left">
-          <Button 
+          <Button
             icon={BackButtonBlack}
-            text="BACK" 
+            text="BACK"
             onClick={handleBack}
             position="left"
           />
         </div>
-        
+
         <div className="navigation-right">
-          <Button 
-            text="GET SUMMARY" 
+          <Button
+            text="GET SUMMARY"
             onClick={handleGetSummary}
             position="right"
           />

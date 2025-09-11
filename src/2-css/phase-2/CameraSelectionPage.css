@@ -9,29 +9,35 @@
 .content-wrapper {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
-  padding: 0 20px;
+  padding: 120px 20px 0;
 }
 
-.analysis-header {
-  font-size: 14px;
-  color: #A0A4AB;
+/* Analysis instruction - absolutely positioned under header */
+.analysis-instruction {
+  position: absolute;
+  top: 100px;
+  left: 32px;
+  z-index: 10;
+}
+
+.analysis-instruction span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1B1C;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 60px;
-  text-align: center;
 }
 
 .options-container {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 60px;
   align-items: center;
-  max-width: 600px;
+  max-width: 1000px;
   width: 100%;
 }
 
@@ -46,8 +52,8 @@
 }
 
 .option-icon {
-  width: 120px;
-  height: 120px;
+  width: 500px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,8 +70,8 @@
 }
 
 .option-icon svg {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   color: #1A1B1C;
   position: relative;
   z-index: 2;
@@ -98,69 +104,70 @@
   z-index: 3;
 }
 
-/* Rhombus backgrounds behind each icon */
-.option-icon::before {
-  content: '';
+/* Direct SVG rhombus styling */
+.rhombus-svg-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80px;
-  height: 80px;
-  border: 2px dashed #A0A4AB;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%);
   z-index: 1;
-  opacity: 0.6;
+  width: 500px;
+  height: 500px;
+  opacity: 0.8;
 }
 
-.option-icon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  border: 1px dashed #A0A4AB;
-  transform: translate(-50%, -50%) rotate(45deg);
-  z-index: 1;
-  opacity: 0.4;
+.rhombus-svg-container svg {
+  width: 100%;
+  height: 100%;
 }
 
-/* Desktop layout - side by side */
+/* Mobile responsive rhombus */
+@media (max-width: 768px) {
+  .rhombus-svg-container {
+    width: 400px;
+    height: 400px;
+  }
+}
 @media (min-width: 769px) {
   .options-container {
     flex-direction: row;
     justify-content: center;
-    gap: 200px;
+    gap: 120px;
   }
   
-  .analysis-header {
-    margin-bottom: 80px;
+  .analysis-instruction {
+    top: 120px;
   }
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .content-wrapper {
-    padding: 0 16px;
+    padding: 100px 16px 0;
   }
   
-  .analysis-header {
-    font-size: 12px;
-    margin-bottom: 40px;
+  .analysis-instruction {
+    left: 16px;
+    top: 80px;
   }
+  
+  .analysis-instruction span {
+    font-size: 14px;
+  }
+  
   
   .options-container {
-    gap: 70px;
+    gap: 50px;
   }
   
   .option-icon {
-    width: 100px;
-    height: 100px;
+    width: 400px;
+    height: 400px;
   }
   
   .option-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
   }
   
   .option-text {

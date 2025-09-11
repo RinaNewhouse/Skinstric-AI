@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
+import { ReactComponent as RhombusesAroundDemographics } from '../../assets/rhombuses-around-demographics.svg';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
 import { RiCameraLensLine } from "react-icons/ri";
 import { GrGallery } from "react-icons/gr";
@@ -50,10 +51,12 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
     <div className="camera-selection-page">
       <Header />
       
+      {/* Analysis instruction - absolutely positioned under header */}
+      <div className="analysis-instruction">
+        <span>TO START ANALYSIS</span>
+      </div>
+      
       <div className="content-wrapper">
-        <div className="analysis-header">
-          <span>TO START ANALYSIS</span>
-        </div>
         
         <div className="options-container">
           {/* Camera Option */}
@@ -64,9 +67,11 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
             onClick={onCameraSelect}
           >
             <div className="option-icon">
-              <RiCameraLensLine size={48} />
+              <div className="rhombus-svg-container">
+                <RhombusesAroundDemographics />
+              </div>
+              <RiCameraLensLine size={80} />
             </div>
-            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. TO SCAN YOUR FACE</span>
             </div>
@@ -80,9 +85,11 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
             onClick={handleGalleryClick}
           >
             <div className="option-icon">
-              <GrGallery size={48} />
+              <div className="rhombus-svg-container">
+                <RhombusesAroundDemographics />
+              </div>
+              <GrGallery size={80} />
             </div>
-            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. ACCESS GALLERY</span>
             </div>

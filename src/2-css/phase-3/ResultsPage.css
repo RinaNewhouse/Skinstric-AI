@@ -36,22 +36,15 @@
 
 .analysis-title {
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 600;
   color: #1A1B1C;
   margin: 0 0 10px 0;
   letter-spacing: -2%;
 }
 
-.analysis-subtitle {
-  font-size: 14px;
-  font-weight: 300;
-  color: #1A1B1C;
-  margin: 0 0 20px 0;
-  letter-spacing: 1px;
-}
-
 .analysis-description {
   font-size: 14px;
+  font-weight: 400;
   color: #1A1B1C;
   margin: 0;
   line-height: 1.5;

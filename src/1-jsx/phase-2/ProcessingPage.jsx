@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header/Header';
-import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
-import Button from '../../components/Button/Button';
-import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import { ReactComponent as LinesAroundPreparing } from '../../assets/lines-around-preparing-your-analysis.svg';
 import '../../2-css/phase-2/ProcessingPage.css';
 
 const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
@@ -46,8 +43,11 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
       console.log('API response data:', result.data);
       console.log('Calling onAnalysisComplete with data:', result.data);
       
-      // Pass the demographic data to the parent component
-      onAnalysisComplete(result.data);
+      // Wait 2 seconds to show the processing page longer
+      setTimeout(() => {
+        // Pass the demographic data to the parent component
+        onAnalysisComplete(result.data);
+      }, 2000);
       
     } catch (err) {
       console.error('Analysis error:', err);
@@ -63,26 +63,12 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
   if (error) {
     return (
       <div className="processing-page">
-        <Header />
-        <AnimatedSquares />
-        <div className="content-wrapper">
-          <div className="error-message">
-            <h2>Analysis Failed</h2>
-            <p>{error}</p>
-            <Button 
-              text="TRY AGAIN"
-              position="center"
-              onClick={() => uploadImageForAnalysis(imageData)}
-            />
-          </div>
-        </div>
-        <div className="navigation-buttons">
-          <Button 
-            icon={BackButton}
-            text="BACK"
-            position="left"
-            onClick={handleBack}
-          />
+        <div className="error-container">
+          <h2>Analysis Failed</h2>
+          <p>{error}</p>
+          <button onClick={() => uploadImageForAnalysis(imageData)}>
+            TRY AGAIN
+          </button>
         </div>
       </div>
     );
@@ -90,46 +76,16 @@ const ProcessingPage = ({ imageData, onBack, onAnalysisComplete }) => {
 
   return (
     <div className="processing-page">
-      <Header />
-      <AnimatedSquares />
-      
-      <div className="content-wrapper">
-        <div className="processing-container">
-          <div className="processing-header">
-            <span>SKINSTRIC [ANALYSIS]</span>
-          </div>
-          
-          <div className="processing-content">
-            <div className="processing-text">
-              <h2>PREPARING YOUR ANALYSIS...</h2>
-              <p>A.I. IS PROCESSING YOUR IMAGE</p>
-            </div>
-            
-            <div className="processing-steps">
-              <div className="step-item">
-                <div className="step-bullet"></div>
-                <span>ANALYZING SKIN TONE</span>
-              </div>
-              <div className="step-item">
-                <div className="step-bullet"></div>
-                <span>DETECTING FEATURES</span>
-              </div>
-              <div className="step-item">
-                <div className="step-bullet"></div>
-                <span>GENERATING RECOMMENDATIONS</span>
-              </div>
-            </div>
-          </div>
+      <div className="processing-container">
+        {/* Rotating Diamond Lines Animation */}
+        <div className="rotating-lines">
+          <LinesAroundPreparing />
         </div>
-      </div>
-
-      <div className="navigation-buttons">
-        <Button 
-          icon={BackButton}
-          text="BACK"
-          position="left"
-          onClick={handleBack}
-        />
+        
+        {/* Text centered inside the diamonds */}
+        <div className="processing-text">
+          <h1>PREPARING YOUR ANALYSIS...</h1>
+        </div>
       </div>
     </div>
   );

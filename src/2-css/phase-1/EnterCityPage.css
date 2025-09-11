@@ -40,25 +40,25 @@
 
 .city-input {
   width: 100%;
-  padding: 20px;
+  padding: 8px 0;
   font-size: 24px;
   font-weight: 300;
   color: #1A1B1C;
   background: transparent;
   border: none;
-  border-bottom: 2px dashed #A0A4AB;
+  border-bottom: 2px solid #1A1B1C;
   text-align: center;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .city-input::placeholder {
-  color: #A0A4AB;
-  font-weight: 300;
+  color: #1A1B1C;
+  font-weight: 400;
 }
 
 .city-input:focus {
-  border-bottom-color: #1A1B1C;
+  border-bottom-color: #A0A4AB;
 }
 
 .navigation-buttons {

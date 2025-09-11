@@ -50,20 +50,6 @@ const NameInputPage = ({ userData, onDataSubmit, onBack, onProceed }) => {
                 />
               </div>
             </div>
-
-            <div className="input-field-wrapper">
-              <div className="input-label">WHERE ARE YOU FROM?</div>
-              <div className="input-field">
-                <input
-                  type="text"
-                  placeholder="Where are you from?"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  onFocus={() => setCurrentField('location')}
-                  className={currentField === 'location' ? 'focused' : ''}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </main>

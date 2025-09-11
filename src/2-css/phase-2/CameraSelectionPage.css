@@ -29,7 +29,7 @@
 .options-container {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 80px;
   align-items: center;
   max-width: 600px;
   width: 100%;
@@ -48,19 +48,18 @@
 .option-icon {
   width: 120px;
   height: 120px;
-  border: 2px dashed #A0A4AB;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   transition: all 0.3s ease;
   background: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .option-frame:hover .option-icon,
 .option-frame.hovered .option-icon {
-  border-color: #1A1B1C;
   transform: scale(1.05);
 }
 
@@ -68,6 +67,8 @@
   width: 48px;
   height: 48px;
   color: #1A1B1C;
+  position: relative;
+  z-index: 2;
 }
 
 .connecting-line {
@@ -97,12 +98,39 @@
   z-index: 3;
 }
 
+/* Rhombus backgrounds behind each icon */
+.option-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #A0A4AB;
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.option-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border: 1px dashed #A0A4AB;
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 1;
+  opacity: 0.4;
+}
+
 /* Desktop layout - side by side */
 @media (min-width: 769px) {
   .options-container {
     flex-direction: row;
     justify-content: center;
-    gap: 80px;
+    gap: 200px;
   }
   
   .analysis-header {
@@ -122,7 +150,7 @@
   }
   
   .options-container {
-    gap: 50px;
+    gap: 70px;
   }
   
   .option-icon {

@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
-import { ReactComponent as RhombusesAroundDemographics } from '../../assets/rhombuses-around-demographics.svg';
+import { ReactComponent as CameraScanSVG } from '../../assets/camera-scan-face.svg';
+import { ReactComponent as CameraGallerySVG } from '../../assets/camera-gallery.svg';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
-import { RiCameraLensLine } from "react-icons/ri";
-import { GrGallery } from "react-icons/gr";
 import '../../2-css/phase-2/CameraSelectionPage.css';
 
 const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
@@ -61,40 +60,22 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
         <div className="options-container">
           {/* Camera Option */}
           <div 
-            className={`option-frame ${hoveredOption === 'camera' ? 'hovered' : ''}`}
+            className={`option-svg ${hoveredOption === 'camera' ? 'hovered' : ''}`}
             onMouseEnter={() => setHoveredOption('camera')}
             onMouseLeave={() => setHoveredOption(null)}
             onClick={onCameraSelect}
           >
-            <div className="option-icon">
-              <div className="rhombus-svg-container">
-                <RhombusesAroundDemographics />
-              </div>
-              <RiCameraLensLine size={80} />
-            </div>
-            <div className="connecting-line"></div>
-            <div className="option-text">
-              <span>ALLOW A.I. TO SCAN YOUR FACE</span>
-            </div>
+            <CameraScanSVG />
           </div>
 
           {/* Gallery Option */}
           <div 
-            className={`option-frame ${hoveredOption === 'gallery' ? 'hovered' : ''}`}
+            className={`option-svg ${hoveredOption === 'gallery' ? 'hovered' : ''}`}
             onMouseEnter={() => setHoveredOption('gallery')}
             onMouseLeave={() => setHoveredOption(null)}
             onClick={handleGalleryClick}
           >
-            <div className="option-icon">
-              <div className="rhombus-svg-container">
-                <RhombusesAroundDemographics />
-              </div>
-              <GrGallery size={80} />
-            </div>
-            <div className="connecting-line"></div>
-            <div className="option-text">
-              <span>ALLOW A.I. ACCESS GALLERY</span>
-            </div>
+            <CameraGallerySVG />
           </div>
         </div>
       </div>

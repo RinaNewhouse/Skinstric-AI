@@ -9,11 +9,10 @@
 .content-wrapper {
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
-  z-index: 2;
-  padding: 120px 20px 0;
+  align-items: center;
+  padding: 40px 20px;
 }
 
 /* Analysis instruction - absolutely positioned under header */
@@ -25,184 +24,84 @@
 }
 
 .analysis-instruction span {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1A1B1C;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  align-items: center;
-  max-width: 1000px;
-  width: 100%;
-}
-
-.option-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  background: white;
-}
-
-.option-icon {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  background: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.option-frame:hover .option-icon,
-.option-frame.hovered .option-icon {
-  transform: scale(1.05);
-}
-
-.option-icon svg {
-  width: 80px;
-  height: 80px;
-  color: #1A1B1C;
-  position: relative;
-  z-index: 2;
-}
-
-.connecting-line {
-  width: 2px;
-  height: 60px;
-  background: #1A1B1C;
-  margin: 20px 0;
-  position: relative;
-}
-
-/* Camera option - diagonal line up and to the right */
-.option-frame:first-child .connecting-line {
-  transform: rotate(45deg);
-  transform-origin: bottom center;
-}
-
-/* Gallery option - diagonal line down and to the left */
-.option-frame:last-child .connecting-line {
-  transform: rotate(-45deg);
-  transform-origin: top center;
-}
-
-.option-text {
   font-size: 14px;
   color: #1A1B1C;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  text-align: center;
-  line-height: 1.4;
   font-weight: 500;
-  position: relative;
 }
 
-/* Camera text - positioned at top-right of diagonal line */
-.option-frame:first-child .option-text {
-  margin-left: 30px;
-  margin-top: -20px;
+.options-container {
+  display: flex;
+  gap: 200px;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Gallery text - positioned at top-left of diagonal line */
-.option-frame:last-child .option-text {
-  margin-right: 30px;
-  margin-top: -20px;
+/* SVG Option Styling */
+.option-svg {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.option-svg:hover,
+.option-svg.hovered {
+  transform: scale(1.05);
+}
+
+.option-svg svg {
+  width: 300px;
+  height: 300px;
+}
+
+/* Navigation buttons */
 .navigation-buttons {
   position: absolute;
   bottom: 40px;
   left: 0;
   right: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 0 40px;
-  z-index: 3;
+  z-index: 10;
 }
 
-/* Direct SVG rhombus styling */
-.rhombus-svg-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  width: 500px;
-  height: 500px;
-  opacity: 0.8;
-}
-
-.rhombus-svg-container svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Mobile responsive rhombus */
+/* Mobile responsive */
 @media (max-width: 768px) {
-  .rhombus-svg-container {
-    width: 400px;
-    height: 400px;
-  }
-}
-@media (min-width: 769px) {
-  .options-container {
-    flex-direction: row;
-    justify-content: center;
-    gap: 120px;
-  }
-  
   .analysis-instruction {
-    top: 120px;
-  }
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-  .content-wrapper {
-    padding: 100px 16px 0;
-  }
-  
-  .analysis-instruction {
-    left: 16px;
     top: 80px;
+    left: 16px;
   }
   
   .analysis-instruction span {
-    font-size: 14px;
+    font-size: 12px;
   }
-  
   
   .options-container {
-    gap: 50px;
+    gap: 70px;
   }
   
-  .option-icon {
-    width: 400px;
-    height: 400px;
-  }
-  
-  .option-icon svg {
-    width: 64px;
-    height: 64px;
-  }
-  
-  .option-text {
-    font-size: 11px;
+  .option-svg svg {
+    width: 200px;
+    height: 200px;
   }
   
   .navigation-buttons {
     bottom: 20px;
     padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .options-container {
+    gap: 50px;
+  }
+  
+  .option-svg svg {
+    width: 150px;
+    height: 150px;
   }
 }

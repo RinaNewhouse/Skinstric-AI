@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
-import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import { ReactComponent as BackButtonBlack } from '../../assets/back-button-clean.svg';
+import { ReactComponent as RhombusesAroundDemographics } from '../../assets/rhombuses-around-demographics.svg';
 import '../../2-css/phase-3/ResultsPage.css';
 
 const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
@@ -25,8 +25,6 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
 
   return (
     <div className="results-page">
-      <AnimatedSquares />
-      
       <div className="content-wrapper">
         <Header />
         
@@ -40,6 +38,11 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
           </div>
 
           <div className="diamond-container">
+            {/* Rhombus Background */}
+            <div className="rhombus-background">
+              <RhombusesAroundDemographics />
+            </div>
+            
             <div className="diamond-diagram">
               {/* Top section - DEMOGRAPHICS (clickable) */}
               <div 

@@ -45,7 +45,7 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
         <div className="main-content">
           <div className="diamond-container">
             {/* Rhombus Background */}
-            <RhombusBackground size="medium" opacity="high" />
+            <RhombusBackground size="medium" opacity={0.8} />
             
             <div className="diamond-diagram">
               {/* Top section - DEMOGRAPHICS (clickable) */}

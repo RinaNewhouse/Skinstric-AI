@@ -33,7 +33,7 @@ const NameInputPage = ({ userData, onDataSubmit, onBack, onProceed }) => {
       <main className="name-input-main">
         <div className="input-container">
           {/* Rhombus Background */}
-          <RhombusBackground size="medium" opacity={0.8} />
+          <RhombusBackground size="large" opacity={0.8} />
           
           {/* Input Content */}
           <div className="input-content">

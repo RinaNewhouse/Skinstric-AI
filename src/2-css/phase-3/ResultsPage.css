@@ -1,165 +1,192 @@
+/* Results Page */
 .results-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: white;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .content-wrapper {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
   padding: 40px 20px;
 }
 
-.analysis-section {
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.analysis-section {
   margin-bottom: 60px;
 }
 
 .analysis-title {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 300;
+  color: #1A1B1C;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.analysis-subtitle {
+  font-size: 20px;
+  font-weight: 300;
   color: #1A1B1C;
   margin: 0 0 20px 0;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .analysis-description {
-  font-size: 18px;
-  font-weight: 400;
-  color: #6c757d;
+  font-size: 14px;
+  color: #A0A4AB;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
+/* Diamond Container */
 .diamond-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
   margin: 40px 0;
 }
 
 .diamond-diagram {
   position: relative;
-  width: 400px;
-  height: 400px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 4px;
+  width: 100%;
+  height: 100%;
   transform: rotate(45deg);
 }
 
 .diamond-section {
-  background: #e9ecef;
-  border: 2px dashed #adb5bd;
+  position: absolute;
+  width: 50%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  background: white;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-.diamond-section:hover {
-  background: #dee2e6;
-}
-
+/* Only DEMOGRAPHICS section has grey background */
 .demographics-section {
-  background: #d1d3d4 !important;
+  top: 0;
+  left: 0;
+  background: #d2d1d1;
   cursor: pointer;
-  transform-origin: center;
+  transition: background-color 0.3s ease;
 }
 
-.demographics-section:hover,
 .demographics-section.hovered {
-  background: #c8c9ca !important;
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #c3c3c3;
 }
 
-.cosmetic-concerns-section,
-.skin-type-section,
+.demographics-section.hovered .section-label {
+  transform: rotate(-45deg) scale(1.1);
+}
+
+.skin-type-section {
+  top: 0;
+  right: 0;
+}
+
+.cosmetic-concerns-section {
+  bottom: 0;
+  left: 0;
+}
+
 .weather-section {
-  cursor: default;
+  bottom: 0;
+  right: 0;
 }
 
 .section-label {
-  font-size: 16px;
-  font-weight: 600;
-  color: #495057;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1A1B1C;
   text-align: center;
   transform: rotate(-45deg);
-  letter-spacing: 1px;
-  line-height: 1.2;
-  padding: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
 }
 
-.demographics-section .section-label {
-  color: #343a40;
-  font-weight: 700;
+/* Navigation - Bottom Left and Right */
+.navigation-left {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 3;
 }
 
-.navigation-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  margin-top: auto;
+.navigation-right {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 3;
 }
 
-/* Mobile responsiveness */
+/* Mobile Responsive */
 @media (max-width: 768px) {
+  .content-wrapper {
+    padding: 20px 16px;
+  }
+  
   .analysis-title {
-    font-size: 36px;
+    font-size: 20px;
+  }
+  
+  .analysis-subtitle {
+    font-size: 18px;
   }
   
   .analysis-description {
-    font-size: 16px;
+    font-size: 12px;
   }
   
-  .diamond-diagram {
+  .diamond-container {
     width: 300px;
     height: 300px;
+    margin: 30px 0;
   }
   
   .section-label {
-    font-size: 14px;
+    font-size: 10px;
   }
   
-  .content-wrapper {
-    padding: 15px;
+  .navigation-left,
+  .navigation-right {
+    bottom: 20px;
   }
   
-  .main-content {
-    padding: 20px 15px;
+  .navigation-left {
+    left: 20px;
+  }
+  
+  .navigation-right {
+    right: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .analysis-title {
-    font-size: 28px;
-  }
-  
-  .diamond-diagram {
+  .diamond-container {
     width: 250px;
     height: 250px;
   }
   
   .section-label {
-    font-size: 12px;
+    font-size: 9px;
   }
 }

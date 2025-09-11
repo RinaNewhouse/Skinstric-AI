@@ -29,11 +29,6 @@
   height: 600px;
 }
 
-.rhombus-extra-large {
-  width: 700px;
-  height: 700px;
-}
-
 /* Opacity variants */
 .rhombus-background.opacity-low {
   opacity: 0.3;

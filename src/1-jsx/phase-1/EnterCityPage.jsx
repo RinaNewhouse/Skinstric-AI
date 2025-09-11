@@ -50,7 +50,7 @@ const EnterCityPage = ({ onBack, onNext, userName }) => {
             value={city}
             onChange={(e) => setCity(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="your city name"
+            placeholder="Where are you from?"
             className="city-input"
             autoFocus
           />

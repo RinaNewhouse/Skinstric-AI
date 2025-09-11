@@ -50,11 +50,13 @@
   text-align: center;
   outline: none;
   transition: border-color 0.3s ease;
+  text-transform: none;
 }
 
 .name-input::placeholder {
   color: #A0A4AB;
   font-weight: 300;
+  text-transform: none;
 }
 
 .name-input:focus {

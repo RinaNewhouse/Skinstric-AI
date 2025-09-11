@@ -39,7 +39,7 @@ const EnterNamePage = ({ onBack, onNext }) => {
       
       <div className="content-wrapper">
         {/* Rhombus Background */}
-        <RhombusBackground size="medium" opacity={0.8} />
+        <RhombusBackground size="large" opacity={0.8} />
         
         <div className="input-section">
           <div className="input-label">

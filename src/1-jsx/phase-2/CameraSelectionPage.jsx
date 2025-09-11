@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import Header from '../../components/Header/Header';
-import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
 import { RiCameraLensLine } from "react-icons/ri";
@@ -50,7 +49,6 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
   return (
     <div className="camera-selection-page">
       <Header />
-      <AnimatedSquares />
       
       <div className="content-wrapper">
         <div className="analysis-header">

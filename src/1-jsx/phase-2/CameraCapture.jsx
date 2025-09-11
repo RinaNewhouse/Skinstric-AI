@@ -20,6 +20,7 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
   const [isCheckingPermission, setIsCheckingPermission] = useState(true);
   const [isStartingCamera, setIsStartingCamera] = useState(false);
   const [photoTaken, setPhotoTaken] = useState(false);
+  const [capturedImageData, setCapturedImageData] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -171,22 +172,24 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     // Convert to base64
     const base64Image = canvas.toDataURL('image/jpeg', 0.8);
     
-    // Set photo taken state
+    // Set photo taken state and store image data
     setPhotoTaken(true);
+    setCapturedImageData(base64Image);
     
     // Stop camera stream
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
 
-    // Pass base64 image to parent
-    onImageCaptured(base64Image);
+    // Don't auto-proceed - user must click PROCEED button
   };
 
   const handleProceed = () => {
     console.log('Proceeding with captured image...');
-    // The image is already captured and passed to parent
-    // This just handles the UI transition
+    // User must manually click PROCEED to continue
+    if (photoTaken && capturedImageData) {
+      onImageCaptured(capturedImageData);
+    }
   };
 
   const handleBack = () => {
@@ -343,6 +346,13 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
             {/* Instructions - Bottom */}
             <div className="instructions-overlay">
               <CameraTextSVG />
+            </div>
+            
+            {/* Back Button - Bottom Left */}
+            <div className="pre-photo-back-button">
+              <div className="nav-button" onClick={handleBack}>
+                <BackButtonWhite />
+              </div>
             </div>
           </>
         )}

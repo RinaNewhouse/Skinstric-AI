@@ -34,12 +34,12 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 10;
   text-align: center;
 }
 
 .header-overlay svg {
-  width: 200px;
+  width: 1000px;
   height: auto;
 }
 
@@ -69,12 +69,12 @@
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 10;
   text-align: center;
 }
 
 .great-shot-overlay svg {
-  width: 200px;
+  width: 75px;
   height: auto;
 }
 
@@ -93,6 +93,19 @@
   height: auto;
 }
 
+/* Pre-Photo Back Button - Bottom Left */
+.pre-photo-back-button {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 10;
+}
+
+.pre-photo-back-button .nav-button svg {
+  width: 60px;
+  height: 60px;
+}
+
 /* Navigation Overlay - Bottom */
 .navigation-overlay {
   position: absolute;
@@ -102,7 +115,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
-  z-index: 4;
+  z-index: 10;
 }
 
 .nav-button {
@@ -202,7 +215,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .header-overlay svg {
-    width: 150px;
+    width: 450px;
   }
   
   .take-pic-button {
@@ -215,7 +228,7 @@
   }
   
   .great-shot-overlay svg {
-    width: 150px;
+    width: 120px;
   }
   
   .instructions-overlay {
@@ -246,7 +259,7 @@
 
 @media (max-width: 480px) {
   .header-overlay svg {
-    width: 120px;
+    width: 350px;
   }
   
   .take-pic-button svg {
@@ -255,7 +268,7 @@
   }
   
   .great-shot-overlay svg {
-    width: 120px;
+    width: 100px;
   }
   
   .instructions-overlay svg {

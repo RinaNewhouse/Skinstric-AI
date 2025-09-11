@@ -32,16 +32,17 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
           buttonText="ENTER CODE"
         />
 
-        <div className="main-content">
-          <div className="analysis-section">
-            <h1 className="analysis-title">SKINSTRIC [ANALYSIS]</h1>
-            <h2 className="analysis-subtitle">A.I. ANALYSIS</h2>
-            <p className="analysis-description">
-              A.I. HAS ESTIMATED THE FOLLOWING. FIX ESTIMATED INFORMATION IF
-              NEEDED.
-            </p>
-          </div>
+        {/* Analysis section moved outside main-content */}
+        <div className="analysis-section">
+          <h1 className="analysis-title">SKINSTRIC [ANALYSIS]</h1>
+          <p className="analysis-description">
+            A.I. HAS ESTIMATED THE FOLLOWING. 
+            <br />
+            FIX ESTIMATED INFORMATION IF NEEDED.
+          </p>
+        </div>
 
+        <div className="main-content">
           <div className="diamond-container">
             {/* Rhombus Background */}
             <div className="rhombus-background">

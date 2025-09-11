@@ -18,25 +18,32 @@
   padding: 40px 20px;
 }
 
+.analysis-section {
+  position: absolute;
+  top: 100px;
+  left: 52px;
+  z-index: 10;
+}
+
 .results-page .main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   max-width: 800px;
   width: 100%;
 }
 
 .analysis-title {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 300;
   color: #1A1B1C;
   margin: 0 0 10px 0;
-  letter-spacing: 1px;
+  letter-spacing: -2%;
 }
 
 .analysis-subtitle {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 300;
   color: #1A1B1C;
   margin: 0 0 20px 0;
@@ -45,9 +52,10 @@
 
 .analysis-description {
   font-size: 14px;
-  color: #A0A4AB;
+  color: #1A1B1C;
   margin: 0;
   line-height: 1.5;
+  text-transform: uppercase;
 }
 
 /* Diamond Container */
@@ -155,6 +163,11 @@
 @media (max-width: 768px) {
   .content-wrapper {
     padding: 20px 16px;
+  }
+  
+  .analysis-section {
+    left: 16px;
+    top: 80px;
   }
   
   .analysis-title {

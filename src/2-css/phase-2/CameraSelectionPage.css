@@ -79,18 +79,45 @@
 
 .connecting-line {
   width: 2px;
-  height: 30px;
+  height: 60px;
   background: #1A1B1C;
-  margin-bottom: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Camera option - diagonal line up and to the right */
+.option-frame:first-child .connecting-line {
+  transform: rotate(45deg);
+  transform-origin: bottom center;
+}
+
+/* Gallery option - diagonal line down and to the left */
+.option-frame:last-child .connecting-line {
+  transform: rotate(-45deg);
+  transform-origin: top center;
 }
 
 .option-text {
-  font-size: 12px;
-  color: #A0A4AB;
+  font-size: 14px;
+  color: #1A1B1C;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   text-align: center;
   line-height: 1.4;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Camera text - positioned at top-right of diagonal line */
+.option-frame:first-child .option-text {
+  margin-left: 30px;
+  margin-top: -20px;
+}
+
+/* Gallery text - positioned at top-left of diagonal line */
+.option-frame:last-child .option-text {
+  margin-right: 30px;
+  margin-top: -20px;
 }
 
 .navigation-buttons {

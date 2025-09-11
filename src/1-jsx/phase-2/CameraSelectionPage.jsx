@@ -72,6 +72,7 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
               </div>
               <RiCameraLensLine size={80} />
             </div>
+            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. TO SCAN YOUR FACE</span>
             </div>
@@ -90,6 +91,7 @@ const CameraSelectionPage = ({ onCameraSelect, onGallerySelect, onBack }) => {
               </div>
               <GrGallery size={80} />
             </div>
+            <div className="connecting-line"></div>
             <div className="option-text">
               <span>ALLOW A.I. ACCESS GALLERY</span>
             </div>

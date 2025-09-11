@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import CameraCapture from './CameraCapture';
+import CameraSetUpPage from './CameraSetUpPage';
 import ProcessingPage from './ProcessingPage';
 
 const Phase2Router = ({ mode = 'camera', imageData = null, onBack, onComplete }) => {
-  const [currentPage, setCurrentPage] = useState(mode);
+  const [currentPage, setCurrentPage] = useState(mode === 'camera' ? 'setup' : mode);
   const [capturedImage, setCapturedImage] = useState(imageData);
   const [demographicData, setDemographicData] = useState(null);
 
   console.log('Phase2Router initialized with mode:', mode, 'imageData:', imageData ? 'present' : 'null');
+
+  const handleSetupComplete = () => {
+    console.log('Camera setup complete, moving to camera capture...');
+    setCurrentPage('camera');
+  };
 
   const handleImageCaptured = (base64Image) => {
     console.log('Image captured from camera, moving to processing...');
@@ -26,15 +32,23 @@ const Phase2Router = ({ mode = 'camera', imageData = null, onBack, onComplete })
 
   const handleBack = () => {
     if (currentPage === 'processing') {
-      setCurrentPage(mode); // Go back to camera or gallery
+      setCurrentPage('camera'); // Go back to camera capture
       setCapturedImage(null);
+    } else if (currentPage === 'camera') {
+      setCurrentPage('setup'); // Go back to setup
     } else {
-      onBack();
+      onBack(); // Go back to camera selection
     }
   };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
+      case 'setup':
+        return (
+          <CameraSetUpPage
+            onSetupComplete={handleSetupComplete}
+          />
+        );
       case 'camera':
         return (
           <CameraCapture
@@ -52,9 +66,8 @@ const Phase2Router = ({ mode = 'camera', imageData = null, onBack, onComplete })
         );
       default:
         return (
-          <CameraCapture
-            onBack={handleBack}
-            onImageCaptured={handleImageCaptured}
+          <CameraSetUpPage
+            onSetupComplete={handleSetupComplete}
           />
         );
     }

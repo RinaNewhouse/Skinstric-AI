@@ -1,0 +1,124 @@
+.camera-setup-page {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.camera-setup-page.visible {
+  opacity: 1;
+}
+
+.setup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+/* Rotating camera setup SVG */
+.camera-setup-container {
+  position: relative;
+  z-index: 2;
+  width: 400px;
+  height: 400px;
+}
+
+.camera-setup-container svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateWithEasing 4s ease-in-out infinite;
+}
+
+/* Setup text - positioned between icon and border */
+.setup-text {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.setup-text span {
+  font-size: 16px;
+  color: #1A1B1C;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Non-linear rotation animation - fast then slow then fast */
+@keyframes rotateWithEasing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Instructions SVG */
+.instructions-container {
+  position: relative;
+  z-index: 2;
+}
+
+.instructions-container svg {
+  width: 400px;
+  height: auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .setup-content {
+    gap: 40px;
+    padding: 20px;
+  }
+  
+  .camera-setup-container {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .instructions-container svg {
+    width: 300px;
+  }
+  
+  .setup-text span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .setup-content {
+    gap: 30px;
+  }
+  
+  .camera-setup-container {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .instructions-container svg {
+    width: 250px;
+  }
+  
+  .setup-text span {
+    font-size: 12px;
+  }
+}

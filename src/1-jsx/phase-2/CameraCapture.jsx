@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '../../components/Header/Header';
-import AnimatedSquares from '../../components/AnimatedSquares/AnimatedSquares';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
 import { ReactComponent as BackButtonWhite } from '../../assets/back-button-white.svg';
@@ -237,7 +236,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     return (
       <div className="camera-capture-page">
         <Header />
-        <AnimatedSquares />
         <div className="content-wrapper">
           <div className="loading-message">
             <h2>Checking camera permissions...</h2>
@@ -260,7 +258,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     return (
       <div className="camera-capture-page">
         <Header />
-        <AnimatedSquares />
         <div className="content-wrapper">
           <div className="error-message">
             <h2>Camera Access Required</h2>
@@ -288,7 +285,6 @@ const CameraCapture = ({ onBack, onImageCaptured }) => {
     return (
       <div className="camera-capture-page">
         <Header />
-        <AnimatedSquares />
         <div className="content-wrapper">
           <div className="loading-message">
             <h2>Setting up camera...</h2>

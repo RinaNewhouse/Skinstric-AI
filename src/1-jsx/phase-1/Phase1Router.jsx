@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import IntroPage from './IntroPage';
-import EnterNamePage from './EnterNamePage';
-import EnterCityPage from './EnterCityPage';
+import EnterInfoPage from './EnterInfoPage';
 import CameraSelectionPage from '../phase-2/CameraSelectionPage';
 import Phase2Router from '../phase-2/Phase2Router';
 import Phase3Router from '../phase-3/Phase3Router';
@@ -131,7 +130,9 @@ const Phase1Router = () => {
     
     case 'enter-name':
       return (
-        <EnterNamePage 
+        <EnterInfoPage 
+          type="name"
+          placeholder="Introduce Yourself"
           onBack={handleBack}
           onNext={handleNameSubmit}
         />
@@ -139,10 +140,12 @@ const Phase1Router = () => {
     
     case 'enter-city':
       return (
-        <EnterCityPage 
+        <EnterInfoPage 
+          type="city"
+          placeholder="Enter Your City"
+          userName={userData.name}
           onBack={handleBack}
           onNext={handleCitySubmit}
-          userName={userData.name}
         />
       );
     

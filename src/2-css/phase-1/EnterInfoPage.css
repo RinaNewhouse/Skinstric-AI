@@ -15,6 +15,7 @@
   width: 600px;
   height: 600px;
   z-index: 2;
+  overflow: hidden;
 }
 
 .enter-info-page .input-section {

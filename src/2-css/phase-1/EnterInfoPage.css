@@ -7,7 +7,7 @@
   position: relative;
 }
 
-.content-wrapper {
+.enter-info-page .content-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   margin: 0 auto;
 }
 
-.input-section {
+.enter-info-page .input-section {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.input-container {
+.enter-info-page .input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,14 +40,14 @@
   max-width: 300px;
 }
 
-.input-label {
+.enter-info-page .input-label {
   font-size: 14px;
   color: #999;
   margin-bottom: 8px;
   text-align: center;
 }
 
-.info-input {
+.enter-info-page .info-input {
   width: 100%;
   padding: 12px 0;
   border: none;
@@ -61,16 +61,16 @@
   text-transform: none;
 }
 
-.info-input::placeholder {
+.enter-info-page .info-input::placeholder {
   color: #999;
   text-transform: none;
 }
 
-.info-input:focus {
+.enter-info-page .info-input:focus {
   border-bottom-color: #007bff;
 }
 
-.navigation-buttons {
+.enter-info-page .navigation-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,33 +78,42 @@
   z-index: 3;
 }
 
+/* Center the rhombus background perfectly over the input */
+.enter-info-page .rhombus-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-  .content-wrapper {
+  .enter-info-page .content-wrapper {
     width: 90%;
     height: 400px;
   }
   
-  .info-input {
+  .enter-info-page .info-input {
     font-size: 20px;
   }
   
-  .navigation-buttons {
+  .enter-info-page .navigation-buttons {
     padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .content-wrapper {
+  .enter-info-page .content-wrapper {
     width: 95%;
     height: 350px;
   }
   
-  .info-input {
+  .enter-info-page .info-input {
     font-size: 18px;
   }
   
-  .input-label {
+  .enter-info-page .input-label {
     font-size: 12px;
   }
 }

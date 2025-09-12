@@ -145,7 +145,7 @@
 }
 
 /* Main Content */
-.main-content {
+.demographics-page .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;

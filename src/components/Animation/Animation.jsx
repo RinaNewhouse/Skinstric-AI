@@ -5,6 +5,8 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
   const mainHeadingRef = useRef(null);
   const leftSideRef = useRef(null);
   const rightSideRef = useRef(null);
+  const leftButtonRef = useRef(null);
+  const rightButtonRef = useRef(null);
 
   // Get responsive slide distance based on screen size
   const getSlideDistance = () => {
@@ -39,7 +41,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     });
     
     // Fade out RIGHT side (button + triangle)
-    gsap.to([rightSideRef.current, rightTriangleRef.current], {
+    gsap.to([rightSideRef.current, rightTriangleRef.current, rightButtonRef.current], {
       opacity: 0,
       duration: 0.4,
       ease: 'power2.out'
@@ -60,7 +62,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     });
     
     // Fade out LEFT side (button + triangle)
-    gsap.to([leftSideRef.current, leftTriangleRef.current], {
+    gsap.to([leftSideRef.current, leftTriangleRef.current, leftButtonRef.current], {
       opacity: 0,
       duration: 0.4,
       ease: 'power2.out'
@@ -81,7 +83,7 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
     });
     
     // Fade in both sides (buttons + triangles)
-    gsap.to([leftSideRef.current, rightSideRef.current, leftTriangleRef.current, rightTriangleRef.current], {
+    gsap.to([leftSideRef.current, rightSideRef.current, leftTriangleRef.current, rightTriangleRef.current, leftButtonRef.current, rightButtonRef.current], {
       opacity: 1,
       duration: 0.4,
       ease: 'power2.out'
@@ -121,13 +123,17 @@ const Animation = ({ children, leftTriangleRef, rightTriangleRef, onHoverStart, 
         Sophisticated<br />skincare
       </h1>
       
-      {/* Left side container */}
-      <div ref={leftSideRef} className="left-side">
+      {/* Left side container - empty for GSAP targeting */}
+      <div ref={leftSideRef} className="left-side"></div>
+      
+      {/* Right side container - empty for GSAP targeting */}
+      <div ref={rightSideRef} className="right-side"></div>
+      
+      {/* Buttons as siblings to triangles */}
+      <div ref={leftButtonRef}>
         {childrenWithProps[0]}
       </div>
-      
-      {/* Right side container */}
-      <div ref={rightSideRef} className="right-side">
+      <div ref={rightButtonRef}>
         {childrenWithProps[1]}
       </div>
     </div>

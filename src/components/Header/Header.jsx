@@ -3,7 +3,7 @@ import './Header.css';
 
 const Header = ({ 
   brandName = "SKINSTRIC", 
-  phaseLabel = "[INTRO]", 
+  phaseLabel = "[ INTRO ]", 
   buttonText = "ENTER CODE",
   onButtonClick 
 }) => {

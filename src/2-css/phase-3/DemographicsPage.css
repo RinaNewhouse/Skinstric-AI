@@ -390,6 +390,7 @@
   
   .demographics-content {
     flex-direction: column;
+    align-items: center;
     gap: 40px;
   }
   

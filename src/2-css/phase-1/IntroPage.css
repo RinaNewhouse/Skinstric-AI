@@ -46,10 +46,10 @@
 /* Decorative triangles */
 .left-triangle, .right-triangle {
   position: absolute;
-  top: 100px;
+  top: 50%;
   width: 400px;
   height: 400px;
-  transform: rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
   border: 1px dashed #A0A4AB;
   opacity: 0.7;
   z-index: 1;

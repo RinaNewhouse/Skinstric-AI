@@ -63,10 +63,6 @@
   text-transform: none;
 }
 
-.enter-info-page .info-input:focus {
-  border-bottom-color: #007bff;
-}
-
 .enter-info-page .navigation-buttons {
   display: flex;
   justify-content: space-between;

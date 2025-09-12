@@ -179,6 +179,11 @@
     height: 400px;
   }
   
+  .rhombus-background {
+    width: 400px;
+    height: 400px;
+  }
+  
   .diamond-diagram {
     width: 200px;
     height: 200px;
@@ -204,6 +209,11 @@
 
 @media (max-width: 480px) {
   .diamond-container {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .rhombus-background {
     width: 350px;
     height: 350px;
   }

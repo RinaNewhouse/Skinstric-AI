@@ -19,16 +19,6 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-/* When inside Animation component containers, override positioning */
-.left-side .button-container,
-.right-side .button-container {
-  position: relative;
-  top: auto;
-  left: auto;
-  right: auto;
-  transform: none;
-}
-
 .button {
   display: flex;
   flex-direction: row;

@@ -266,7 +266,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
             {/* Main Content Area */}
             <div className="main-content">
               <div className="selected-category-name">
-                {getCurrentSelection() ? getCurrentSelection()[0].toUpperCase() : ''}
+                {getCurrentSelection() ? formatRaceName(getCurrentSelection()[0]) : ''}
               </div>
               
               {/* Pie Chart */}

@@ -30,35 +30,26 @@
 }
 
 .demographics-header h1 {
-  font-size: 14px;
-  color: #A0A4AB;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
-  font-weight: 300;
-}
-
-.demographics-header h2 {
   font-size: 16px;
   color: #1A1B1C;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.02em;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 600;
 }
 
-.demographics-header h3 {
-  font-size: 48px;
+.demographics-header h2 {
+  font-size: 72px;
   color: #1A1B1C;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: -0.06em;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .demographics-header p {
   font-size: 14px;
-  color: #A0A4AB;
+  color: #1A1B1C;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0;
@@ -231,7 +222,7 @@
   background: white;
   background-image: conic-gradient(from 0deg, #1A1B1C 0deg, #1A1B1C var(--percentage, 0deg), #A0A4AB var(--percentage, 0deg), #A0A4AB 360deg);
   mask: radial-gradient(circle, transparent 80px, black 80px);
-  -webkit-mask: radial-gradient(circle, transparent 80px, black 80px);
+  -webkit-mask: radial-gradient(circle, transparent 94px, black 80px);
 }
 
 .pie-chart-text {

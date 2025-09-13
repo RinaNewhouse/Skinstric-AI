@@ -205,8 +205,8 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
       <div className="content-wrapper">
         <div className="demographics-container">
           <div className="demographics-header">
-            <h2>A.I. ANALYSIS</h2>
-            <h3>DEMOGRAPHICS</h3>
+            <h1>A.I. ANALYSIS</h1>
+            <h2>DEMOGRAPHICS</h2>
             <p>PREDICTED RACE & AGE</p>
           </div>
 

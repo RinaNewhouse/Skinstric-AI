@@ -261,10 +261,6 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
                    <span className="attribute-label">SEX</span>
                  </div>
                </div>
-               
-               <div className="instruction-text">
-                 <p>If A.I. estimate is wrong, select the correct one.</p>
-               </div>
              </div>
 
             {/* Main Content Area */}
@@ -320,6 +316,9 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
           position="left"
           onClick={onBack}
         />
+        <div className="instruction-text">
+          <p>If A.I. estimate is wrong, select the correct one.</p>
+        </div>
         <ResetButton className="reset-button" onClick={handleReset} />
         <ConfirmButton className="confirm-button" onClick={handleConfirm} />
       </div>

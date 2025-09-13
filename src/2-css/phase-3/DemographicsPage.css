@@ -329,6 +329,24 @@
   right: 0;
   height: 100px;
   z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.instruction-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.instruction-text p {
+  font-size: 14px;
+  color: #A0A4AB;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .reset-button {

@@ -25,6 +25,10 @@
   gap: 40px;
 }
 
+.demographics-header {
+  margin-left: 12px;
+}
+
 .demographics-header h1 {
   font-size: 14px;
   color: #A0A4AB;

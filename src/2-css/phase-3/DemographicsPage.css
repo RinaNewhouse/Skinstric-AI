@@ -144,17 +144,16 @@
 }
 
 /* Main Content */
-.demographics-page .main-content {
+.demographics-main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 30px;
   position: relative;
 }
 
-.demographics-page .main-content::before {
+.demographics-main-content::before {
   content: '';
   height: 1px;
   background: #1A1B1C;
@@ -175,7 +174,6 @@
 .right-sidebar {
   background: white;
   border-radius: 12px;
-  padding: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   height: fit-content;
   position: relative;

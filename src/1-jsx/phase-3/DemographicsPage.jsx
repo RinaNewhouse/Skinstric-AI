@@ -268,7 +268,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
              </div>
 
             {/* Main Content Area */}
-            <div className="main-content">
+            <div className="demographics-main-content">
               <div className="selected-category-name">
                 {getCurrentSelection() ? formatRaceName(getCurrentSelection()[0]) : ''}
               </div>

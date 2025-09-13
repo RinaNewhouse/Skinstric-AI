@@ -37,6 +37,12 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
     return Math.floor(value * 100).toFixed(2);
   };
 
+  const formatRaceName = (name) => {
+    return name.split(' ').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    ).join(' ');
+  };
+
   const getSortedEntries = (data) => {
     return Object.entries(data).sort((a, b) => b[1] - a[1]);
   };
@@ -286,7 +292,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
                     className={`race-table-row ${getCurrentSelection() && getCurrentSelection()[0] === item ? 'selected' : ''}`}
                     onClick={() => handleItemSelect(item, confidence)}
                   >
-                    <span className="race-name">{item.toUpperCase()}</span>
+                    <span className="race-name">{formatRaceName(item)}</span>
                     <span className="race-confidence">{formatPercentage(confidence)}%</span>
                   </div>
                 ))}

@@ -185,8 +185,8 @@
   transition: all 0.2s ease;
 }
 
-.race-table-row:hover {
-  background: #f8f9fa;
+.race-table-row:hover:not(.selected) {
+  background: #E8E8E8;
 }
 
 .race-table-row.selected {

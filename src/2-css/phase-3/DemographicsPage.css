@@ -144,6 +144,7 @@
   font-weight: 400;
   color: #1A1B1C;
   letter-spacing: -0.02em;
+  align-self: flex-start;
 }
 
 /* Right Sidebar */

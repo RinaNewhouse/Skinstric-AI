@@ -234,7 +234,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
              <div className="left-sidebar">
                <div className="selected-attributes">
                  <div 
-                   className={`attribute-block race-selected ${activeCategory === 'race' ? 'active' : ''}`}
+                   className={`attribute-block ${activeCategory === 'race' ? 'active' : 'race-selected'}`}
                    onClick={() => handleCategoryClick('race')}
                  >
                    <span className="attribute-value">{selectedRace ? selectedRace[0].toUpperCase() : ''}</span>
@@ -242,7 +242,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
                  </div>
                  
                  <div 
-                   className={`attribute-block age-selected ${activeCategory === 'age' ? 'active' : ''}`}
+                   className={`attribute-block ${activeCategory === 'age' ? 'active' : 'age-selected'}`}
                    onClick={() => handleCategoryClick('age')}
                  >
                    <span className="attribute-value">{selectedAge ? selectedAge[0].toUpperCase() : ''}</span>
@@ -250,7 +250,7 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
                  </div>
                  
                  <div 
-                   className={`attribute-block gender-selected ${activeCategory === 'gender' ? 'active' : ''}`}
+                   className={`attribute-block ${activeCategory === 'gender' ? 'active' : 'gender-selected'}`}
                    onClick={() => handleCategoryClick('gender')}
                  >
                    <span className="attribute-value">{selectedGender ? selectedGender[0].toUpperCase() : ''}</span>

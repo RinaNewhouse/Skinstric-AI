@@ -68,7 +68,7 @@
   content: '';
   display: block;
   height: 1px;
-  background: #E0E0E0;
+  background: #1A1B1C;
   margin-bottom: 20px;
   width: 100%;
   position: absolute;
@@ -93,7 +93,7 @@
   padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid #1A1B1C;
   padding-top: 21px;
 }
 

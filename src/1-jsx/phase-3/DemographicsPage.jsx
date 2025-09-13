@@ -132,6 +132,19 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
     }
   };
 
+  const getCategoryName = () => {
+    switch (activeCategory) {
+      case 'race':
+        return 'RACE';
+      case 'age':
+        return 'AGE';
+      case 'gender':
+        return 'GENDER';
+      default:
+        return 'RACE';
+    }
+  };
+
   const handleItemSelect = (item, confidence) => {
     if (activeCategory === 'race') {
       handleRaceSelect([item, confidence]);
@@ -262,7 +275,10 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
 
             {/* Right Sidebar - Dynamic Category Table */}
             <div className="right-sidebar">
-              <h3 className="table-title">{getCategoryTitle()}</h3>
+              <div className="table-title">
+                <span className="table-title-left">{getCategoryName()}</span>
+                <span className="table-title-right">A.I. CONFIDENCE</span>
+              </div>
               <div className="race-table">
                 {getSortedEntries(getCurrentData()).map(([item, confidence]) => (
                   <div 

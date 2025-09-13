@@ -163,11 +163,14 @@
 }
 
 .table-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
   color: #1A1B1C;
   margin: 0 0 20px 0;
-  text-align: center;
   letter-spacing: 1px;
 }
 

@@ -148,7 +148,6 @@
   font-size: 40px;
   font-weight: 700;
   color: #1A1B1C;
-  text-align: center;
   letter-spacing: 3px;
 }
 
@@ -168,7 +167,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   color: #1A1B1C;
   margin: 0 16px 8px 16px;
   letter-spacing: 1px;
@@ -206,7 +205,7 @@
 
 .race-confidence {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* Pie Chart */

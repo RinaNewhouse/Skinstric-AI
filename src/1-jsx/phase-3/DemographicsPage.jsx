@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import radioButton from '../../assets/radioButton.webp';
+import activeRadioButton from '../../assets/activeRadioButton.webp';
 import '../../2-css/phase-3/DemographicsPage.css';
 
 const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
@@ -292,7 +294,14 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
                     className={`race-table-row ${getCurrentSelection() && getCurrentSelection()[0] === item ? 'selected' : ''}`}
                     onClick={() => handleItemSelect(item, confidence)}
                   >
-                    <span className="race-name">{formatRaceName(item)}</span>
+                    <div className="race-name-container">
+                      <img 
+                        src={getCurrentSelection() && getCurrentSelection()[0] === item ? activeRadioButton : radioButton}
+                        alt="radio button"
+                        className="radio-button"
+                      />
+                      <span className="race-name">{formatRaceName(item)}</span>
+                    </div>
                     <span className="race-confidence">{formatPercentage(confidence)}%</span>
                   </div>
                 ))}

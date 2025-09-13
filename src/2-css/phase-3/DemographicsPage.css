@@ -113,7 +113,8 @@
 
 .attribute-label {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -191,6 +192,17 @@
 .race-table-row.selected {
   background: #1A1B1C;
   color: white;
+}
+
+.race-name-container {
+  display: flex;
+  align-items: center;
+}
+
+.radio-button {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
 }
 
 .race-name {

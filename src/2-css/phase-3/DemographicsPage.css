@@ -83,9 +83,9 @@
   transition: all 0.3s ease;
 }
 
-.attribute-block:hover {
+.attribute-block:hover:not(.active) {
   transform: translateY(-2px);
-  background: #999;
+  background: #E8E8E8;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 

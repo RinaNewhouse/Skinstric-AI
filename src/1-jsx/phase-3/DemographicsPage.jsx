@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import { ReactComponent as BackButton } from '../../assets/back-button-clean.svg';
+import { ReactComponent as ResetButton } from '../../assets/reset-button.svg';
+import { ReactComponent as ConfirmButton } from '../../assets/confirm-button.svg';
 import radioButton from '../../assets/radioButton.webp';
 import activeRadioButton from '../../assets/activeRadioButton.webp';
 import '../../2-css/phase-3/DemographicsPage.css';
@@ -318,20 +320,8 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
           position="left"
           onClick={onBack}
         />
-        <div className="action-buttons">
-          <Button 
-            text="RESET"
-            position="left"
-            onClick={handleReset}
-            className="reset-button"
-          />
-          <Button 
-            text="CONFIRM"
-            position="right"
-            onClick={handleConfirm}
-            className="confirm-button"
-          />
-        </div>
+        <ResetButton className="reset-button" onClick={handleReset} />
+        <ConfirmButton className="confirm-button" onClick={handleConfirm} />
       </div>
     </div>
   );

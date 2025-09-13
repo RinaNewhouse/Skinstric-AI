@@ -173,7 +173,11 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
   if (!demographicData) {
     return (
       <div className="demographics-page">
-        <Header />
+        <Header
+          brandName="SKINSTRIC"
+          phaseLabel="[ ANALYSIS ]"
+          buttonText="ENTER CODE"
+        />
         <AnimatedSquares />
         <div className="content-wrapper">
           <div className="error-message">
@@ -195,13 +199,16 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
 
   return (
     <div className="demographics-page">
-      <Header />
+      <Header
+        brandName="SKINSTRIC"
+        phaseLabel="[ANALYSIS]"
+        buttonText="ENTER CODE"
+      />
       <AnimatedSquares />
       
       <div className="content-wrapper">
         <div className="demographics-container">
           <div className="demographics-header">
-            <h1>SKINSTRIC [ANALYSIS]</h1>
             <h2>A. I. ANALYSIS</h2>
             <h3>DEMOGRAPHICS</h3>
             <p>PREDICTED RACE & AGE</p>

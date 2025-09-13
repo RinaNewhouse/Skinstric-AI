@@ -28,13 +28,13 @@ const ResultsPage = ({ onDemographicsClick, onBack, onGetSummary }) => {
       <div className="content-wrapper">
         <Header
           brandName="SKINSTRIC"
-          phaseLabel="[ANALYSIS]"
+          phaseLabel="[ ANALYSIS ]"
           buttonText="ENTER CODE"
         />
 
         {/* Analysis section moved outside main-content */}
         <div className="analysis-section">
-          <h1 className="analysis-title">SKINSTRIC [ANALYSIS]</h1>
+          <h1 className="analysis-title">A.I. ANALYSIS</h1>
           <p className="analysis-description">
             A.I. HAS ESTIMATED THE FOLLOWING. 
             <br />

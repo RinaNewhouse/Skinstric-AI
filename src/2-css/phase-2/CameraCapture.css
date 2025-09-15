@@ -232,6 +232,16 @@
   margin-bottom: 30px;
 }
 
+.permission-overlay .button-container {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 64px;
+}
+
+.permission-overlay .button-container .button-text {
+  color: white;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .header-overlay svg {

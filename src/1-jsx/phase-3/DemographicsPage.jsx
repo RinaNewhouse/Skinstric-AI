@@ -320,7 +320,10 @@ const DemographicsPage = ({ demographicData, onBack, onConfirm }) => {
           <p>If A.I. estimate is wrong, select the correct one.</p>
         </div>
         <ResetButton className="reset-button" onClick={handleReset} />
-        <ConfirmButton className="confirm-button" onClick={handleConfirm} />
+        <ConfirmButton 
+          className="confirm-button" 
+          // onClick={handleConfirm} 
+        />
       </div>
     </div>
   );
